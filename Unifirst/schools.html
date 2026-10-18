@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>School Robotics Programs & Lab Setup | UniFirst Robotics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <!-- Tailwind Config matching index.html / home.html color palette -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B132B",      /* Dark Navy Header / Banners */
+                        "brand-bg": "#FFFFFF",        /* Pure White Background */
+                        "brand-green": "#52D68A",     /* Emerald/Mint Green Accent */
+                        "brand-coral": "#FA9D8E",     /* Soft Salmon / Coral Cards */
+                        "brand-btn": "#FF4D30",       /* Vibrant Red-Orange Buttons */
+                        "brand-text": "#111827",      /* Deep charcoal text */
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Minimal Grid Lines Background */
+        .minimal-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
+        }
+
+        /* Glassmorphic Navbar */
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
+        }
+
+        /* Dropdown Animations & FX */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Minimal Card FX */
+        .minimal-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .minimal-card:hover {
+            transform: translateY(-4px);
+            border-color: #0B132B;
+            box-shadow: 0 20px 40px -15px rgba(11, 19, 43, 0.08);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            
+            <!-- Company Logo -->
+            <a href="home.html" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-brand-green shrink-0">
+                    <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
+                </div>
+            </a>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold tracking-normal text-slate-300">
+                <a href="home.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="schools.html" class="text-white font-bold py-2 border-b-2 border-brand-green">Schools</a>
+                
+                <!-- Admissions Dropdown -->
+                <div class="relative group py-4">
+                    <a href="admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Admissions
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
+                    </div>
+                </div>
+
+                <!-- Career Counselling Dropdown -->
+                <div class="relative group py-4">
+                    <a href="careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Career Counselling
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
+                    </div>
+                </div>
+
+                <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
+                <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+            </div>
+
+            <!-- Header Action Button -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
+                    <span class="material-symbols-outlined text-2xl block">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                    </div>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
+                </div>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="schools.html" class="text-brand-green py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 mt-8">
+            <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+                Enquire Now
+            </a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-28 sm:pt-36 pb-16 sm:pb-24 minimal-grid overflow-hidden border-b border-gray-200 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-200 text-brand-dark text-xs tracking-wider font-bold uppercase shadow-sm mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-green"></span>
+                School Robotics Ecosystem
+            </div>
+
+            <h1 class="font-tech text-3xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
+                Robotics Education for the <span class="bg-brand-dark text-white px-2.5 py-0.5 rounded inline-block">Next Generation</span>
+            </h1>
+
+            <p class="text-sm sm:text-base lg:text-lg text-slate-700 font-normal leading-relaxed max-w-3xl mx-auto mb-8">
+                Practical robotics and technology programs designed to help students learn by building, experimenting and solving real-world problems.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#robotics-classes" class="w-full sm:w-auto bg-brand-btn text-white font-bold px-8 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md flex items-center justify-center gap-2">
+                    <span>Explore Robotics Classes</span>
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                </a>
+                <a href="labsetup.html" class="w-full sm:w-auto bg-white text-brand-dark border border-gray-300 font-bold px-8 py-3.5 rounded-md text-xs uppercase tracking-wider hover:border-brand-dark transition-all flex items-center justify-center gap-2">
+                    <span>Lab Setup Solutions</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: ROBOTICS CLASSES (GRADE 4 TO GRADE 10) -->
+    <section id="robotics-classes" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest block mb-2">Progressive Curriculum</span>
+                <h2 class="font-tech text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark mb-4">Robotics Classes</h2>
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                    Programs available for <strong class="text-brand-dark font-semibold">Grade 4 to Grade 10</strong>, tailored to match students' cognitive development and technical readiness.
+                </p>
+            </div>
+
+            <!-- Grid of 7 Grade Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Grade 4 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 4</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 1</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Introduction to simple mechanical structures, basic power sources, and hands-on assembly fundamentals.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Basic Mechanics</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Simple Circuits</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Team Building</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade4.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 5 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 5</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 2</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Understanding gears, pulleys, motor integration, and early block-based visual logic.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Gear Ratios</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Motor Control</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Visual Logic</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade5.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 6 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 6</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 3</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Introduction to basic sensors (IR, light, touch) and structured visual programming algorithms.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Sensor Integration</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Block Coding</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Algorithmic Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade6.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 7 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 7</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 4</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Intermediate electronics, microcontroller basics, breadboarding, and preliminary text-based logic.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Microcontrollers</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Breadboarding</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Flow Control</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade7.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 8 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 8</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 5</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Embedded C/C++ programming, analog & digital sensor calibration, and autonomous navigation robotics.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Embedded C/C++</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Autonomous Navigation</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade8.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 9 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 9</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 6</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            IoT integration, wireless communication modules (Bluetooth/Wi-Fi), and Python for hardware control.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">IoT Basics</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Python Scripting</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Wireless Control</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade9.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Grade 10 Card -->
+                <div class="minimal-card bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-tech text-2xl font-bold text-brand-dark">Grade 10</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-green/20 text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Level 7</span>
+                        </div>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                            Advanced robotics projects, agentic AI logic, computer vision introduction, and capstone system engineering.
+                        </p>
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Core Skills Developed:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Agentic AI Logic</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">System Engineering</span>
+                                <span class="px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium text-slate-700">Computer Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="grade10.html" class="w-full text-center bg-white border border-gray-300 hover:border-brand-dark text-brand-dark font-bold py-2.5 rounded-lg text-xs transition-colors flex items-center justify-center gap-1.5">
+                        <span>View Program</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PROGRAM COURSES -->
+    <section id="program-courses" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+                <div>
+                    <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest block mb-2">Core Specializations</span>
+                    <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark">Program Courses</h2>
+                </div>
+                <a href="programcourses.html" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-slate-600 transition-colors">
+                    <span>Explore Courses</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Electronics -->
+                <a href="programcourses.html#electronics" class="minimal-card bg-white p-6 rounded-2xl border border-gray-200 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                            <span class="material-symbols-outlined text-xl">electric_bolt</span>
+                        </div>
+                        <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Electronics</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Master circuit fundamentals, voltage regulations, breadboard wiring, and electronic component integration.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-bold text-brand-dark flex items-center gap-1 group-hover:underline">
+                        4 Modules <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    </span>
+                </a>
+
+                <!-- Mechanics -->
+                <a href="programcourses.html#mechanics" class="minimal-card bg-white p-6 rounded-2xl border border-gray-200 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                            <span class="material-symbols-outlined text-xl">settings</span>
+                        </div>
+                        <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Mechanics</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Understand physical dynamics, chassis structures, gear systems, linkages, and motor torque mechanics.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-bold text-brand-dark flex items-center gap-1 group-hover:underline">
+                        5 Modules <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    </span>
+                </a>
+
+                <!-- AI / Agentic Learning -->
+                <a href="programcourses.html#ai-learning" class="minimal-card bg-white p-6 rounded-2xl border border-gray-200 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                            <span class="material-symbols-outlined text-xl">psychology</span>
+                        </div>
+                        <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">AI / Agentic Learning</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Introduce modern artificial intelligence concepts, autonomous agent loops, and decision-making algorithms.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-bold text-brand-dark flex items-center gap-1 group-hover:underline">
+                        3 Modules <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    </span>
+                </a>
+
+                <!-- Other Robotics Courses -->
+                <a href="programcourses.html" class="minimal-card bg-white p-6 rounded-2xl border border-gray-200 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                            <span class="material-symbols-outlined text-xl">extension</span>
+                        </div>
+                        <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Other Robotics Courses</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Specialized modules covering wireless control, IoT sensors, drone basics, and competitive robotics prep.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-bold text-brand-dark flex items-center gap-1 group-hover:underline">
+                        Custom Tracks <span class="material-symbols-outlined text-xs">chevron_right</span>
+                    </span>
+                </a>
+
+            </div>
+
+            <div class="mt-8 text-center sm:hidden">
+                <a href="programcourses.html" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-dark">
+                    <span>Explore Courses</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ROBOTICS LAB SETUP -->
+    <section id="lab-setup" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-16">
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest block">Turnkey Solutions</span>
+                    <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark leading-tight">
+                        Robotics Lab Setup for Educational Institutions
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        We help educational institutions create dedicated robotics learning environments equipped with the infrastructure, hardware, software and learning resources required for practical technology education.
+                    </p>
+                </div>
+                <div class="lg:col-span-5 flex justify-start lg:justify-end">
+                    <a href="labsetup.html" class="bg-brand-btn text-white font-bold px-8 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md inline-flex items-center gap-2">
+                        <span>Explore Lab Setup</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Lab Setup 9-Pillar Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">01</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Planning</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Layout designs tailored to institutional space, student batch sizes, and safety requirements.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">02</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Infrastructure</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Custom workbenches, storage units, surge-protected power grids, and display setups.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">03</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Equipment</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Soldering stations, precision hand tools, testing meters, and safety equipment.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">04</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Robotics Kits</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Modular structural kits, motor sets, chassis platforms, and wheels for Grade 4–10 projects.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">05</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Hardware</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Microcontrollers, sensor arrays, motor drivers, communication boards, and power modules.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">06</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Software</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Pre-configured visual block platforms, IDE environments, and diagnostic utilities.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">07</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Installation</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Complete physical setup, hardware calibration, and initial system testing on-site.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">08</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Training</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Comprehensive faculty development programs and instructor lesson plan orientation.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <span class="text-xs font-tech font-bold text-slate-400 block mb-1">09</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Maintenance</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Regular component replacement support, hardware upgrades, and technical troubleshooting.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: WHY ROBOTICS EDUCATION? -->
+    <section id="why-robotics" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest block mb-2">Value & Pedagogy</span>
+                <h2 class="font-tech text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark">Why Robotics Education?</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2">Measurable educational benefits grounded in practical pedagogy</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Topic 1 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">handshake</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Hands-On Learning</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Moves education beyond abstract concepts into tangible hardware building, helping reinforce theoretical science and math.
+                    </p>
+                </div>
+
+                <!-- Topic 2 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">troubleshoot</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Problem Solving</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Encourages structured debugging when code or mechanical parts fail, cultivating resilience and systematic troubleshooting.
+                    </p>
+                </div>
+
+                <!-- Topic 3 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">account_tree</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Logical Thinking</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Teaches sequence, conditional logic, and algorithmic structuring through simple-to-complex programming challenges.
+                    </p>
+                </div>
+
+                <!-- Topic 4 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">engineering</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Engineering Exposure</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Provides early familiarity with core engineering disciplines, including mechatronics, electronics, and software development.
+                    </p>
+                </div>
+
+                <!-- Topic 5 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">devices</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Technology Skills</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Prepares students with digital literacy, sensor integration, and computational thinking essential in a tech-driven world.
+                    </p>
+                </div>
+
+                <!-- Topic 6 -->
+                <div class="minimal-card bg-white p-6 sm:p-8 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-xl">dataset</span>
+                    </div>
+                    <h3 class="font-tech text-lg font-bold text-brand-dark mb-2">Project-Based Learning</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Fosters teamwork, project management, and execution discipline as students design and demonstrate working robotic models.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA / CONTACT SECTION -->
+    <section id="contact" class="py-16 sm:py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-6">
+            <h2 class="font-tech text-3xl sm:text-4xl lg:text-5xl font-extrabold">
+                Bring Robotics Education to Your School
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                Connect with our team to explore tailored grade programs, curriculum integration, or complete robotics lab infrastructure setup.
+            </p>
+            <div class="pt-4">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-brand-btn text-white font-bold px-9 py-4 rounded-md text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg">
+                    <span>Contact Us</span>
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-slate-400 py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold shrink-0">
+                    <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                </div>
+                <span class="font-tech text-sm font-bold text-white">UniFirst Robotics</span>
+            </div>
+
+            <p class="text-xs text-slate-500 text-center sm:text-right">
+                © 2026 UniFirst Robotics. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

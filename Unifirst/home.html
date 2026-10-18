@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>UniFirst Robotics | Practical Engineering & Emerging Tech</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Tailwind Theme Colors -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B132B",      /* Dark Navy Header / Banners */
+                        "brand-bg": "#FFFFFF",        /* Pure White Background */
+                        "brand-green": "#52D68A",     /* Emerald/Mint Green Accent */
+                        "brand-coral": "#FA9D8E",     /* Soft Salmon / Coral Cards */
+                        "brand-btn": "#FF4D30",       /* Vibrant Red-Orange Buttons */
+                        "brand-text": "#111827",      /* Deep charcoal text */
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'infinite-scroll': 'scroll 30s linear infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Pure White Minimal Grid Pattern */
+        .minimal-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
+        }
+
+        /* Glassmorphic Navbar */
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Card Depth & Shadow System */
+        .card-depth {
+            box-shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.12), 0 8px 10px -6px rgba(11, 19, 43, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-depth:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -5px rgba(11, 19, 43, 0.2), 0 10px 15px -5px rgba(11, 19, 43, 0.12);
+        }
+
+        /* Destination/Service Card Reference Design */
+        .feature-card {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 420px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.35);
+        }
+
+        .feature-card-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(11,19,43,0.85) 75%, rgba(11,19,43,0.95) 100%);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
+
+    <!-- GLOBAL NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            
+            <!-- Company Logo & Branding -->
+            <a href="home.html" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                    <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold text-slate-300">
+                <a href="home.html" class="text-white font-bold py-2 border-b-2 border-brand-green">Home</a>
+                <a href="schools.html" class="hover:text-white transition-colors py-2">Schools</a>
+                
+                <!-- Admissions Dropdown -->
+                <div class="relative group py-4">
+                    <a href="admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Admissions
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
+                    </div>
+                </div>
+
+                <!-- Career Counselling Dropdown -->
+                <div class="relative group py-4">
+                    <a href="careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Career Counselling
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
+                    </div>
+                </div>
+
+                <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
+                <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
+                    <span class="material-symbols-outlined text-2xl block">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img src="./Images/roboarm.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
+                </div>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="text-brand-green py-1">HOME</a>
+                <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 mt-8">
+            <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+                Enquire Now
+            </a>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         1st SECTION: HERO SECTION
+    =========================================== -->
+    <header class="relative pt-36 sm:pt-48 pb-28 sm:pb-36 border-b border-gray-200 overflow-hidden bg-brand-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="./Images/roboarm.jpg" alt="Robotics Background" class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/70"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl text-left">
+                
+                <div class="inline-block bg-brand-green/20 border border-brand-green/40 text-brand-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-sm backdrop-blur-md">
+                    Advanced STEM & Engineering Labs
+                </div>
+
+                <h1 class="font-tech text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-md">
+                    Nurturing curiosity today to shape the innovators of tomorrow
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-10 font-normal max-w-2xl">
+                    At Unifirst Robotics, we believe the best way to learn technology is to create with it. Through practical experiences in robotics, coding, and AI, we help students explore ideas, experiment fearlessly, and transform their imagination into real-world innovations
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="#services" class="w-full sm:w-auto bg-brand-btn text-white font-bold px-8 py-4 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-lg text-center">
+                        Explore Programs
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-md text-xs uppercase tracking-wider transition-all shadow-lg backdrop-blur-md text-center">
+                        Get In Touch
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ==========================================
+         2nd SECTION: WHY US
+    =========================================== -->
+    <section id="why-us" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-200 bg-slate-50/50">
+        <div class="max-w-7xl mx-auto text-center">
+            
+            <div class="max-w-3xl mx-auto mb-12 sm:mb-16">
+                <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-3">
+                    Why Choose UniFirst Robotics
+                </h2>
+                <p class="text-xs sm:text-base text-slate-600 font-medium">
+                    By combining hands-on prototyping, engineering design principles, and real-world software integration, we at Unifirst Robotics equip students with practical STEM skills for a technology-driven future. Our curriculum is crafted with great thought and care. 
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center text-center bg-white border border-gray-200 rounded-2xl p-6 card-depth group">
+                    <div class="w-24 h-24 rounded-2xl bg-emerald-50 border border-emerald-100 p-3 mb-5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                        <img src="./Images/HomePage/Why Choose UniFirst Robotics/Icon 1.png" alt="Practical Hardware" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="font-tech font-bold text-base text-brand-dark mb-2">All in One Learning Journey</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Combined learning experience with sensors, actuators, and microcontroller programming.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center bg-white border border-gray-200 rounded-2xl p-6 card-depth group">
+                    <div class="w-24 h-24 rounded-2xl bg-emerald-50 border border-emerald-100 p-3 mb-5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                        <img src="./Images/HomePage/Why Choose UniFirst Robotics/Icon 2.png" alt="Industry Aligned" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="font-tech font-bold text-base text-brand-dark mb-2">Industry-Aligned Standard</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Curriculum developed carefully alongside AI/ML experts and technology educators.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center bg-white border border-gray-200 rounded-2xl p-6 card-depth group">
+                    <div class="w-24 h-24 rounded-2xl bg-emerald-50 border border-emerald-100 p-3 mb-5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                        <img src="./Images/HomePage/Why Choose UniFirst Robotics/Icon 3.png" alt="AI & Robotics Integration" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="font-tech font-bold text-base text-brand-dark mb-2">Student-Centric Guidance</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Have a strong understanding of students and offer personalised guidance through admissions.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center bg-white border border-gray-200 rounded-2xl p-6 card-depth group">
+                    <div class="w-24 h-24 rounded-2xl bg-emerald-50 border border-emerald-100 p-3 mb-5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                        <img src="./Images/HomePage/Why Choose UniFirst Robotics/Icon 4.png" alt="End to End Support" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="font-tech font-bold text-base text-brand-dark mb-2">Tailored to the institution</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Learning that can easily be integrated into existing school and college timetables or programs.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         3rd SECTION: THE ONES THAT MAKE IT HAPPEN
+    =========================================== -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-200 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-12">
+                The Ones That Make It Happen
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
+                <div class="relative rounded-2xl overflow-hidden card-depth group h-[420px]">
+                    <img src="./Images/HomePage/The One that make it happen/Priya.jpeg" alt="Lead Technical Trainer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-slate-200 transition-all duration-300">
+                        <h3 class="font-tech text-base font-bold text-brand-dark">Maddela Priyadharshini</h3>
+                        <p class="text-xs text-brand-btn font-semibold">Lead Technical Trainer</p>
+                        <div class="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                            <p class="text-[11px] text-slate-600 pt-2 mt-2 border-t border-slate-100 font-medium">
+                                Leads technical sessions and practical hands-on training modules for students.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden card-depth group h-[460px] md:-translate-y-4">
+                    <img src="./Images/HomePage/The One that make it happen/Subramanyam.jpeg" alt="CEO" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-slate-200 transition-all duration-300">
+                        <h3 class="font-tech text-base font-bold text-brand-dark">Subrahmanyam Chandaluru</h3>
+                        <p class="text-xs text-brand-btn font-semibold">CEO</p>
+                        <div class="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                            <p class="text-[11px] text-slate-600 pt-2 mt-2 border-t border-slate-100 font-medium">
+                                Directing vision and strategic expansion for technical education and hands-on lab deployments across institutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden card-depth group h-[420px]">
+                    <img src="./Images/HomePage/The One that make it happen/Saritha.jpeg" alt="DIRECTOR MARKETING HEAD" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-slate-200 transition-all duration-300">
+                        <h3 class="font-tech text-base font-bold text-brand-dark">Saritha Chandaluru</h3>
+                        <p class="text-xs text-brand-btn font-semibold">DIRECTOR MARKETING HEAD</p>
+                        <div class="max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-500 ease-in-out">
+                            <p class="text-[11px] text-slate-600 pt-2 mt-2 border-t border-slate-100 font-medium">
+                                Driving strategic outreach, institutional partnerships, and brand growth initiatives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         4th SECTION: WHAT WE DO BEST
+    =========================================== -->
+    <section id="services" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-200 bg-slate-50/50">
+        <div class="max-w-7xl mx-auto text-center">
+            
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-12 sm:mb-16">
+                What We Do Best
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Card 1 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/1. school and colleges workshops and bootcamps.png" alt="School and College workshops and bootcamps" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">School and College workshops and bootcamps</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">Our programs help students turn concepts into practical skills through experimentation and problem-solving.</p>
+                        <a href="schools.html" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/2. robotics and science fairs and competitions.png" alt="Robotics and Science fairs and competitions" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">Robotics and Science fairs and competitions</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">We support students in fairs, competitions, and exhibitions, guiding them from initial concepts and design to building, testing, and presenting their final projects.</p>
+                        <a href="schools.html#bootcamps" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/3. school stem labs.png" alt="School STEM Labs" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">School STEM Labs</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">We provide the complete setup of robotics equipment, kits, and structured classroom modules.</p>
+                        <a href="admissions.html" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/4. engaging and relevant robotics kits.png" alt="Engaging and relevant Robotic Kits" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">Engaging and relevant Robotic Kits</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">Combined learning experience with sensors, actuators, and microcontroller programming.</p>
+                        <a href="careerCounselling.html" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/5. stream and career guidance and counselling.png" alt="Stream and Career Guidance and Counseling" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">Stream and Career Guidance and Counseling</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">We help students discover their strengths, bring to light about niche career opportunities, and make informed decisions about their academic and professional futures.</p>
+                        <a href="schools.html#competitions" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card group text-left flex flex-col justify-end p-6">
+                    <img src="./Images/HomePage/What do we do Best/6. college admissions india and overseas.png" alt="College admissions India and Overseas" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="feature-card-overlay absolute inset-0"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-tech text-xl font-bold text-white tracking-wide">College admissions India and Overseas</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 font-medium mb-6">We guide students offering personalised support with university selection, application processes, and academic pathways.</p>
+                        <a href="schools.html#faculty" class="w-full bg-slate-900/80 hover:bg-slate-900 border border-white/20 backdrop-blur-md text-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-between group-hover:border-white/40">
+                            <span>Explore Now</span>
+                            <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         5th SECTION: ACADEMIC PARTNERS
+    =========================================== -->
+    <section class="py-16 sm:py-24 border-b border-gray-200 bg-white">
+        
+        <div class="bg-brand-dark text-white py-12 px-4 sm:px-6 lg:px-8 mb-16 shadow-lg overflow-hidden">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+                <div class="lg:col-span-7 text-left">
+                    <h2 class="font-tech text-2xl sm:text-4xl font-bold tracking-tight mb-2">
+                        Academic Partners & Impact
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-normal">
+                        Our academic partners are already a step ahead by embracing hands-on STEM, coding, and robotics education. Together, we're preparing students to go beyond textbooks, build real-world skills, and shape the future of technology.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Horizontal Infinite Scrolling Marquee with Circular Images -->
+            <div class="w-full inline-flex flex-nowrap overflow-hidden relative [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                <div class="flex items-center justify-start gap-8 animate-infinite-scroll py-4 shrink-0">
+                    
+                    <!-- Partner 1 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/1.png" alt="Partner Logo 1" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 2 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/2.png" alt="Partner Logo 2" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 3 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/3.png" alt="Partner Logo 3" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 4 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/4.png" alt="Partner Logo 4" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 5 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/5.png" alt="Partner Logo 5" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 6 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/6.png" alt="Partner Logo 6" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Partner 7 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/7.png" alt="Partner Logo 7" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Partner 8 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden hover:scale-105 transition-transform">
+                            <img src="./Images/HomePage/Academic Partners/8.png" alt="Partner Logo 8" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Duplicate set for seamless infinite loop effect -->
+                <div class="flex items-center justify-start gap-8 animate-infinite-scroll py-4 shrink-0" aria-hidden="true">
+                    
+                    <!-- Partner 1 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/1.png" alt="Partner Logo 1" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 2 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/2.png" alt="Partner Logo 2" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 3 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/3.png" alt="Partner Logo 3" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 4 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/4.png" alt="Partner Logo 4" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 5 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/5.png" alt="Partner Logo 5" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Partner 6 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/6.png" alt="Partner Logo 6" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Partner 7 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/7.png" alt="Partner Logo 7" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Partner 8 -->
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border-2 border-brand-green flex items-center justify-center p-1 shadow-xl overflow-hidden">
+                            <img src="./Images/HomePage/Academic Partners/8.png" alt="Partner Logo 8" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <div class="mb-12">
+                <div class="inline-block bg-brand-dark text-brand-green px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider mb-2">
+                    Key Achievements
+                </div>
+                <h3 class="font-tech text-xl sm:text-3xl font-extrabold text-brand-dark">
+                    Our Measurable Educational Footprint
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-24 bg-brand-dark text-white rounded-b-3xl flex flex-col items-center justify-center shadow-lg mb-4 relative card-depth">
+                        <div class="w-5 h-5 rounded-full bg-white mb-1"></div>
+                        <span class="font-tech text-xl font-bold text-brand-green">15k+</span>
+                    </div>
+                    <h4 class="font-tech font-bold text-base text-brand-dark">Students Impacted</h4>
+                    <p class="text-xs text-slate-600 mt-1">Guided through hands-on robotics and microcontrollers programs.</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-24 bg-brand-dark text-white rounded-b-3xl flex flex-col items-center justify-center shadow-lg mb-4 relative card-depth">
+                        <div class="w-5 h-5 rounded-full bg-white mb-1"></div>
+                        <span class="font-tech text-xl font-bold text-brand-green">50+</span>
+                    </div>
+                    <h4 class="font-tech font-bold text-base text-brand-dark">Institutional Labs</h4>
+                    <p class="text-xs text-slate-600 mt-1">State-of-the-art STEM labs deployed in schools and colleges.</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-24 bg-brand-dark text-white rounded-b-3xl flex flex-col items-center justify-center shadow-lg mb-4 relative card-depth">
+                        <div class="w-5 h-5 rounded-full bg-white mb-1"></div>
+                        <span class="font-tech text-xl font-bold text-brand-green">100+</span>
+                    </div>
+                    <h4 class="font-tech font-bold text-base text-brand-dark">Workshops Conducted</h4>
+                    <p class="text-xs text-slate-600 mt-1">Interactive bootcamps and hackathons across leading institutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         6th SECTION: TESTIMONIALS
+    =========================================== -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-200 bg-slate-50/60">
+        <div class="max-w-7xl mx-auto text-center">
+            
+            <div class="max-w-2xl mx-auto mb-16">
+                <div class="inline-block bg-brand-dark text-brand-green px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
+                    Testimonials
+                </div>
+                <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-3">
+                    What Educators & Students Say
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-600 font-medium">Hear directly from the institutions, scholars, and professionals we empower.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 card-depth flex flex-col justify-between text-left relative group">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
+                            "The robotics lab setup transformed how our students engage with practical sciences. Top tier kits and phenomenal execution!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-brand-green shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Dr. Rajesh Kumar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-tech text-xs font-bold text-brand-dark">Dr. Rajesh Kumar</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Principal, Apex School</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 card-depth flex flex-col justify-between text-left relative group">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
+                            "Building autonomous bots during the workshop gave me real engineering clarity that conventional textbooks never provided."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-brand-green shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Ananya Verma" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-tech text-xs font-bold text-brand-dark">Ananya Verma</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Robotics Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 card-depth flex flex-col justify-between text-left relative group">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
+                            "UniFirst Robotics provided seamless career counselling that successfully guided my admissions into overseas engineering programs."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-brand-green shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80" alt="Siddharth Nair" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-tech text-xs font-bold text-brand-dark">Siddharth Nair</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Overseas Scholar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 card-depth flex flex-col justify-between text-left relative group">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                            <span class="material-symbols-outlined text-sm font-variation-settings:'FILL'_1">star</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
+                            "Their faculty development programs upskilled our entire STEM department in advanced microcontrollers and modern AI tools."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <div class="w-11 h-11 rounded-full overflow-hidden shrink-0 border-2 border-brand-green shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Prof. S. Rao" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-tech text-xs font-bold text-brand-dark">Prof. S. Rao</h4>
+                            <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Engineering Dean</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         7th SECTION: WHAT ARE YOU WAITING FOR
+    =========================================== -->
+    <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 minimal-grid bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <h2 class="font-tech text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight mb-4">
+                What Are You Waiting For?
+            </h2>
+
+            <p class="text-sm sm:text-base text-slate-700 max-w-xl mx-auto font-medium leading-relaxed mb-8">
+                Take the next step in modern robotics education. Connect with our team to set up a lab, book a workshop, or seek admissions guidance.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <a href="schools.html" class="bg-brand-btn text-white font-bold py-3.5 px-4 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md text-center">
+                    School Programs
+                </a>
+                <a href="admissions.html" class="bg-brand-btn text-white font-bold py-3.5 px-4 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md text-center">
+                    Admissions Support
+                </a>
+                <a href="careerCounselling.html" class="bg-brand-btn text-white font-bold py-3.5 px-4 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md text-center">
+                    Career Counselling
+                </a>
+            </div>
+
+            <!-- Contact Form Box -->
+            <div class="mt-12 bg-white p-6 sm:p-10 rounded-2xl border border-gray-200 card-depth text-left max-w-2xl mx-auto">
+                <h3 class="font-tech text-lg font-bold text-brand-dark mb-4 text-center">Send Us an Enquiry</h3>
+                <form onsubmit="event.preventDefault(); alert('Enquiry Submitted Successfully!');" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Your Name" required class="w-full bg-slate-50 border border-gray-300 rounded-md px-3.5 py-2.5 text-xs text-brand-dark focus:outline-none focus:border-brand-dark focus:bg-white">
+                        <input type="email" placeholder="Your Email" required class="w-full bg-slate-50 border border-gray-300 rounded-md px-3.5 py-2.5 text-xs text-brand-dark focus:outline-none focus:border-brand-dark focus:bg-white">
+                    </div>
+                    <textarea rows="3" placeholder="How can we assist you?" required class="w-full bg-slate-50 border border-gray-300 rounded-md px-3.5 py-2.5 text-xs text-brand-dark focus:outline-none focus:border-brand-dark focus:bg-white"></textarea>
+                    <button type="submit" class="w-full bg-brand-dark text-white font-bold py-3 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all shadow-md">
+                        Submit Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+         FOOTER WITH PROPER BRAND SOCIAL MEDIA ICONS
+    =========================================== -->
+    <footer class="bg-brand-dark text-slate-400 pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+            
+            <!-- Company Info & Logo -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white tracking-tight">UniFirst Robotics</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                    Empowering the next generation of engineers and innovators through world-class STEM curriculum, robotics hardware, and expert academic mentorship.
+                </p>
+                
+                <!-- Exact Social Media Links with Font Awesome Icons -->
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://www.facebook.com/unifirstrobotics" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/ufrblr" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/unifirst-robotics/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCVcR1qDq-Xp-SfqozXcU9Gw" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/unifirst_robotics/?utm_medium=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links: Programs -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Programs</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="schools.html" class="hover:text-white transition-colors">School STEM Labs</a></li>
+                    <li><a href="schools.html#bootcamps" class="hover:text-white transition-colors">College Bootcamps</a></li>
+                    <li><a href="schools.html#competitions" class="hover:text-white transition-colors">Robotics Competitions</a></li>
+                    <li><a href="schools.html#faculty" class="hover:text-white transition-colors">Faculty Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Admissions & Career -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Advisory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">UG Admissions</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">PG Overseas</a></li>
+                    <li><a href="careerCounselling.html" class="hover:text-white transition-colors">Career Counselling</a></li>
+                    <li><a href="careerCounselling.html#professionals" class="hover:text-white transition-colors">Working Professionals</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Company -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition-colors">Gallery</a></li>
+                    <li><a href="blogs.html" class="hover:text-white transition-colors">Blogs & News</a></li>
+                    <li><a href="#contact" class="hover:text-white transition-colors">Contact Support</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>© 2026 UniFirst Robotics. All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

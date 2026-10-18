@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Institutional Robotics Lab Setup & Infrastructure | UniFirst Robotics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <!-- Tailwind Config matching home.html / schools.html color palette -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B132B",      /* Dark Navy Header / Banners */
+                        "brand-bg": "#FFFFFF",        /* Pure White Background */
+                        "brand-green": "#52D68A",     /* Emerald/Mint Green Accent */
+                        "brand-coral": "#FA9D8E",     /* Soft Salmon / Coral Cards */
+                        "brand-btn": "#FF4D30",       /* Vibrant Red-Orange Buttons */
+                        "brand-text": "#111827",      /* Deep charcoal text */
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Technical Grid Pattern */
+        .minimal-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
+        }
+
+        /* Glassmorphic Navbar */
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
+        }
+
+        /* Dropdown Animations & FX */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Active Navigation Underline */
+        .nav-link-active {
+            position: relative;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+        }
+
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background-color: #52D68A;
+        }
+
+        /* B2B Professional Card FX */
+        .b2b-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .b2b-card:hover {
+            transform: translateY(-4px);
+            border-color: #0B132B;
+            box-shadow: 0 16px 32px -10px rgba(11, 19, 43, 0.06);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            
+            <!-- Company Logo -->
+            <a href="home.html" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-brand-green shrink-0">
+                    <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
+                </div>
+            </a>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold tracking-normal text-slate-300">
+                <a href="home.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="schools.html" class="hover:text-white transition-colors py-2">Schools</a>
+                
+                <!-- Admissions Dropdown -->
+                <div class="relative group py-4">
+                    <a href="admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Admissions
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
+                    </div>
+                </div>
+
+                <!-- Career Counselling Dropdown -->
+                <div class="relative group py-4">
+                    <a href="careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Career Counselling
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
+                    </div>
+                </div>
+
+                <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
+                <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+            </div>
+
+            <!-- Header Action Button -->
+            <div class="flex items-center gap-3">
+                <a href="#contact-b2b" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
+                    <span class="material-symbols-outlined text-2xl block">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <a href="home.html" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                    </div>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-2">
+                    <span class="material-symbols-outlined text-3xl block">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 mt-8">
+            <a href="#contact-b2b" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+                Enquire Now
+            </a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 minimal-grid overflow-hidden border-b border-gray-200 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-200 text-brand-dark text-xs tracking-wider font-bold uppercase shadow-sm mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-green"></span>
+                Turnkey Institutional Infrastructure[cite: 18]
+            </div>
+
+            <h1 class="font-tech text-3xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.12] max-w-4xl mx-auto mb-6">
+                Build a Robotics Lab That <span class="bg-brand-dark text-white px-2.5 py-0.5 rounded inline-block">Inspires Innovation</span>[cite: 18]
+            </h1>
+
+            <p class="text-sm sm:text-base lg:text-lg text-slate-700 font-normal leading-relaxed max-w-2xl mx-auto mb-8">
+                Complete robotics laboratory setup solutions designed for educational institutions[cite: 18].
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#requirements" class="w-full sm:w-auto bg-brand-btn text-white font-bold px-7 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md">
+                    Explore Implementation Process[cite: 18]
+                </a>
+                <a href="#equipment" class="w-full sm:w-auto bg-gray-50 text-brand-dark border border-gray-300 font-bold px-7 py-3.5 rounded-md text-xs uppercase tracking-wider hover:border-brand-dark transition-all">
+                    View Hardware Specs[cite: 18]
+                </a>
+            </div>
+
+            <!-- Trust Metrics Band -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-gray-200 max-w-4xl mx-auto text-left">
+                <div>
+                    <div class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">150+[cite: 18]</div>
+                    <div class="text-xs text-slate-500 font-medium">Labs Deployed[cite: 18]</div>
+                </div>
+                <div>
+                    <div class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">100%[cite: 18]</div>
+                    <div class="text-xs text-slate-500 font-medium">STEM Compliance[cite: 18]</div>
+                </div>
+                <div>
+                    <div class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">End-to-End[cite: 18]</div>
+                    <div class="text-xs text-slate-500 font-medium">Hardware & Training[cite: 18]</div>
+                </div>
+                <div>
+                    <div class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">24/7 SLA[cite: 18]</div>
+                    <div class="text-xs text-slate-500 font-medium">Maintenance Support[cite: 18]</div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- SECTION 1: UNDERSTANDING YOUR REQUIREMENTS -->
+    <section id="requirements" class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 01 — Analysis[cite: 18]</span>
+            </div>
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-4">Understanding Your Requirements[cite: 18]</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-12">
+                Before delivering hardware, our academic engineering team conducts a thorough institutional evaluation to ensure the laboratory architecture perfectly aligns with your vision and student capacity[cite: 18].
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Institution Requirements -->
+                <div class="b2b-card bg-gray-50 p-6 sm:p-7 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-lg">domain</span>
+                    </div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Institution Requirements[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        We map out overall educational vision, budget benchmarks, accreditation guidelines (CBSE, ICSE, IB, Cambridge), and long-term innovation milestones[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Available Space -->
+                <div class="b2b-card bg-gray-50 p-6 sm:p-7 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-lg">square_foot</span>
+                    </div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Available Space[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Precision floor space assessment to maximize square footage, airflow, natural lighting, and movement corridors for student safety[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Student Strength -->
+                <div class="b2b-card bg-gray-50 p-6 sm:p-7 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-lg">groups</span>
+                    </div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Student Strength[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Calculating optimal batch sizes, workstation concurrency, kit-to-student ratios, and rotation schedules to eliminate downtime[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Curriculum Alignment -->
+                <div class="b2b-card bg-gray-50 p-6 sm:p-7 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-lg">menu_book</span>
+                    </div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Curriculum Strategy[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Integrating hardware directly into grade-wise learning pathways across robotics, physics, computer science, and AI modules[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Equipment Requirements -->
+                <div class="b2b-card bg-gray-50 p-6 sm:p-7 rounded-2xl border border-gray-200">
+                    <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-lg">inventory_2</span>
+                    </div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Equipment Requirements[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Custom bill of materials (BOM) including kits, tools, 3D printers, power supplies, and storage systems customized to institutional scale[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Strategic Consultation Card -->
+                <div class="bg-brand-dark text-white p-6 sm:p-7 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Consulting Service[cite: 18]</span>
+                        <h3 class="font-tech text-base font-bold mb-2">Need a Customized Assessment?[cite: 18]</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Our technical consultants deliver tailored site surveys and hardware proposals[cite: 18].
+                        </p>
+                    </div>
+                    <a href="#contact-b2b" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-green hover:underline">
+                        <span>Book Site Survey[cite: 18]</span>
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: INFRASTRUCTURE -->
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 02 — Physical Setup[cite: 18]</span>
+            </div>
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-4">Laboratory Infrastructure[cite: 18]</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-12">
+                We design and install durable, modern lab spaces built to withstand rigorous daily student activity while promoting teamwork[cite: 18].
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Lab Layout -->
+                <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="w-9 h-9 rounded-lg bg-gray-100 text-brand-dark flex items-center justify-center font-bold text-sm mb-4">01[cite: 18]</div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Lab Layout & Space Planning[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Modular zonal design splitting spaces into Theory Instruction, Assembly Workstations, Testing Arenas, and Storage Depots[cite: 18].
+                    </p>
+                    <ul class="space-y-1.5 text-xs text-slate-500 border-t border-gray-100 pt-3">
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Optimized movement traffic flow[cite: 18]</li>
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Dedicated test arena space[cite: 18]</li>
+                    </ul>
+                </div>
+
+                <!-- Workstations -->
+                <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="w-9 h-9 rounded-lg bg-gray-100 text-brand-dark flex items-center justify-center font-bold text-sm mb-4">02[cite: 18]</div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Heavy-Duty Workstations[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Anti-static ESD lab benches, heat-resistant surfaces, integrated power strips, and ergonomic seating engineered for team building[cite: 18].
+                    </p>
+                    <ul class="space-y-1.5 text-xs text-slate-500 border-t border-gray-100 pt-3">
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>ESD anti-static surface mats[cite: 18]</li>
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Multi-socket power drop columns[cite: 18]</li>
+                    </ul>
+                </div>
+
+                <!-- Storage -->
+                <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="w-9 h-9 rounded-lg bg-gray-100 text-brand-dark flex items-center justify-center font-bold text-sm mb-4">03[cite: 18]</div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Inventory & Tool Storage[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Color-coded modular storage bins, lockable hardware cabinets, and wall-mounted pegboards for clear component organization[cite: 18].
+                    </p>
+                    <ul class="space-y-1.5 text-xs text-slate-500 border-t border-gray-100 pt-3">
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Numbered component trays[cite: 18]</li>
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Lockable security cabinets[cite: 18]</li>
+                    </ul>
+                </div>
+
+                <!-- Electrical Requirements -->
+                <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="w-9 h-9 rounded-lg bg-gray-100 text-brand-dark flex items-center justify-center font-bold text-sm mb-4">04[cite: 18]</div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Electrical Requirements & Power[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Regulated power distribution lines, surge protection units, centralized circuit breakers, and battery charging hubs[cite: 18].
+                    </p>
+                    <ul class="space-y-1.5 text-xs text-slate-500 border-t border-gray-100 pt-3">
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Surge & short-circuit protection[cite: 18]</li>
+                        <li class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-brand-dark"></span>Dedicated Li-Po charging stations[cite: 18]</li>
+                    </ul>
+                </div>
+
+                <!-- Safety Considerations -->
+                <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200 shadow-sm lg:col-span-2">
+                    <div class="w-9 h-9 rounded-lg bg-gray-100 text-brand-dark flex items-center justify-center font-bold text-sm mb-4">05[cite: 18]</div>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Safety Considerations & Protocols[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Complete campus safety compliance featuring emergency power cut-off buttons, protective eyewear stations, Class-C fire extinguishers, first-aid kits, and wall-mounted safety instruction boards[cite: 18].
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-slate-500 pt-2">
+                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-brand-green">verified</span>Master Cut-Off Switch[cite: 18]</div>
+                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-brand-green">verified</span>Eye Wash Stations[cite: 18]</div>
+                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-brand-green">verified</span>Soldering Fume Extractor[cite: 18]</div>
+                        <div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-brand-green">verified</span>Institutional Safety Signage[cite: 18]</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ROBOTICS EQUIPMENT -->
+    <section id="equipment" class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 03 — Hardware Deployment[cite: 18]</span>
+            </div>
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-4">Robotics Equipment Catalog[cite: 18]</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-12">
+                Industry-standard hardware supplied in organized, durable institutional kits designed for repeated student use[cite: 18].
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Robotics Kits -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">smart_toy</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Robotics Kits[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Grade-specific modular building kits featuring high-durability acrylic chassis, anodized aluminum frames, and quick-connect structural fasteners[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Elementary to Advanced[cite: 18]</span>
+                </div>
+
+                <!-- Card 2: Sensors -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">sensors</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Sensors[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Comprehensive sensor modules: Ultrasonic distance, IR line followers, Gyroscope/Accelerometer (MPU6050), Color, DHT11 Temperature, and Camera AI modules[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Analog & Digital Inputs[cite: 18]</span>
+                </div>
+
+                <!-- Card 3: Motors -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">motion_photos_on</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Motors & Actuators[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            High-torque BO motors, metal gear servo motors (MG996R), NEMA stepper motors, and precision encoder DC motors for robotics motion control[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Precision Motion[cite: 18]</span>
+                </div>
+
+                <!-- Card 4: Controllers -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">developer_board</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Microcontrollers[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Arduino Uno/Nano, ESP32 Wi-Fi/Bluetooth boards, Raspberry Pi 4/5 SBCs, and custom expansion shields for easy plug-and-play wiring[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Processing Units[cite: 18]</span>
+                </div>
+
+                <!-- Card 5: Electronics Equipment -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">electrical_services</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Electronics Equipment[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Variable DC bench power supplies, digital oscilloscopes, breadboards, passive electronic component assortments, and IC test rigs[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Lab Testing Rig[cite: 18]</span>
+                </div>
+
+                <!-- Card 6: Tools -->
+                <div class="b2b-card bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-brand-dark text-white flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">construction</span>
+                        </div>
+                        <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Hardware Tools[cite: 18]</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Temperature-controlled soldering stations, wire strippers, precision screwdriver sets, hot glue guns, multimeters, and safety gear[cite: 18].
+                        </p>
+                    </div>
+                    <span class="mt-4 text-[11px] font-mono font-bold text-brand-dark uppercase tracking-wider">Prototyping Kit[cite: 18]</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HARDWARE & SOFTWARE (TWO COLUMNS) -->
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest block mb-2">Phase 04 — Integrated Stack[cite: 18]</span>
+                <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-3">Hardware & Software Ecosystem[cite: 18]</h2>
+                <p class="text-sm text-slate-600">A seamless integration of physical hardware components with modular programming platforms[cite: 18].</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Column 1: Hardware -->
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-bold">
+                                <span class="material-symbols-outlined">hardware</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest block">Physical Componentry[cite: 18]</span>
+                                <h3 class="font-tech text-xl font-bold text-brand-dark">Hardware Stack[cite: 18]</h3>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">view_in_ar</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Robotics Kits[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Pre-sorted modular structural kits, wheel assemblies, chassis plates, and fastener trays[cite: 18].</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">memory</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Electronics[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Power conversion modules, motor driver boards (L298N/PCA9685), switches, and wiring harnesses[cite: 18].</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">rss_feed</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Sensors[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Environmental, optical, acoustic, spatial, and vision processing sensor packages[cite: 18].</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">cpu</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Controllers[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Programmable microcontrollers and single-board computers equipped with wireless capability[cite: 18].</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-4 border-t border-gray-100 text-[11px] font-mono text-slate-400">
+                        * All hardware provided with 1-Year Institutional Replacement Warranty[cite: 18].
+                    </div>
+                </div>
+
+                <!-- Column 2: Software -->
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-bold">
+                                <span class="material-symbols-outlined">terminal</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest block">Digital Applications[cite: 18]</span>
+                                <h3 class="font-tech text-xl font-bold text-brand-dark">Software Stack[cite: 18]</h3>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">code_blocks</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Programming Tools[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Block-based visual IDEs (Scratch / MIT App Inventor) leading into Python and C/C++ environments[cite: 18].</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">hub</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Robotics Software[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Simulation environments (Tinkercad, Gazebo, Webots) and ROS (Robot Operating System) entry tooling[cite: 18].</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <span class="material-symbols-outlined text-brand-dark text-lg shrink-0 mt-0.5">school</span>
+                                <div>
+                                    <h4 class="font-tech text-sm font-bold text-brand-dark">Learning Platforms[cite: 18]</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">Cloud LMS access for student project submissions, teacher grading dashboards, and digital manuals[cite: 18].</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-gray-100 text-[11px] font-mono text-slate-400">
+                        * Multi-user institutional licenses pre-installed and configured[cite: 18].
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INSTALLATION -->
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 05 — Execution[cite: 18]</span>
+            </div>
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-4">Turnkey Installation Process[cite: 18]</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-12">
+                Our technical field engineers handle the entire physical deployment to ensure zero disruption to standard school operations[cite: 18].
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Installation Step 1 -->
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-200 relative">
+                    <span class="text-2xl font-tech font-bold text-slate-300 mb-3 block">01[cite: 18]</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Equipment Installation[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Unpacking, structural workbench setup, power drop mounting, 3D printer calibration, and safety gear placement[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Installation Step 2 -->
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-200 relative">
+                    <span class="text-2xl font-tech font-bold text-slate-300 mb-3 block">02[cite: 18]</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Configuration[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Networking, workstation laptop setup, IDE software deployment, firmware flashing, and cloud LMS integration[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Installation Step 3 -->
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-200 relative">
+                    <span class="text-2xl font-tech font-bold text-slate-300 mb-3 block">03[cite: 18]</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Quality & Safety Testing[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Rigorous hardware diagnostics, electrical safety load tests, sensor response checks, and circuit breaker verification[cite: 18].
+                    </p>
+                </div>
+
+                <!-- Installation Step 4 -->
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-200 relative">
+                    <span class="text-2xl font-tech font-bold text-brand-dark mb-3 block">04[cite: 18]</span>
+                    <h3 class="font-tech text-base font-bold text-brand-dark mb-2">Setup Completion[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Formal handover with inventory asset tagging, operational manuals delivery, and administrative verification[cite: 18].
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: TRAINING -->
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 06 — Capacity Building[cite: 18]</span>
+            </div>
+            <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-4">Faculty Training & Empowerment[cite: 18]</h2>
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-12">
+                We empower your internal faculty with intensive hands-on workshops, giving teachers total confidence to deliver the curriculum[cite: 18].
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-9 h-9 rounded-lg bg-gray-50 text-brand-dark flex items-center justify-center font-bold mb-4">
+                        <span class="material-symbols-outlined text-lg">school</span>
+                    </div>
+                    <h3 class="font-tech text-sm font-bold text-brand-dark mb-2">Teacher Training Workshops[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Multi-day certification modules for school faculty covering robotics theory, code execution, and lab safety protocols[cite: 18].
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-9 h-9 rounded-lg bg-gray-50 text-brand-dark flex items-center justify-center font-bold mb-4">
+                        <span class="material-symbols-outlined text-lg">compass_calibration</span>
+                    </div>
+                    <h3 class="font-tech text-sm font-bold text-brand-dark mb-2">Lab Orientation Sessions[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Step-by-step walkthrough of inventory management, component distribution, batch rotation, and session cleanup[cite: 18].
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-9 h-9 rounded-lg bg-gray-50 text-brand-dark flex items-center justify-center font-bold mb-4">
+                        <span class="material-symbols-outlined text-lg">handyman</span>
+                    </div>
+                    <h3 class="font-tech text-sm font-bold text-brand-dark mb-2">Equipment Usage Protocols[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Practical instruction on operating 3D printers, soldering stations, multimeters, and microcontroller programming software[cite: 18].
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-gray-200">
+                    <div class="w-9 h-9 rounded-lg bg-gray-50 text-brand-dark flex items-center justify-center font-bold mb-4">
+                        <span class="material-symbols-outlined text-lg">lightbulb</span>
+                    </div>
+                    <h3 class="font-tech text-sm font-bold text-brand-dark mb-2">Project Guidance & Mentorship[cite: 18]</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Ongoing pedagogical support for guiding student innovation projects, STEM fairs, and national robotics competitions[cite: 18].
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: SUPPORT & MAINTENANCE -->
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                        <span class="text-brand-dark text-xs uppercase font-extrabold tracking-widest">Phase 07 — Long-Term SLA[cite: 18]</span>
+                    </div>
+                    <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark">Continuous Support & Maintenance[cite: 18]</h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        We don't just set up your lab and leave. Our dedicated SLA guarantees that your educational hardware stays operational throughout the academic year[cite: 18].
+                    </p>
+                    <div class="pt-2">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 text-xs font-bold text-brand-dark">
+                            <span class="material-symbols-outlined text-brand-green text-sm">verified_user</span>
+                            <span>Annual Maintenance Contract (AMC) Included[cite: 18]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
+                        <h3 class="font-tech text-sm font-bold text-brand-dark mb-1 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-green text-base">published_with_changes</span>
+                            <span>Hardware Replacement[cite: 18]</span>
+                        </h3>
+                        <p class="text-xs text-slate-600">Fast-track replacement for damaged microcontrollers, faulty sensors, or worn-out motors[cite: 18].</p>
+                    </div>
+
+                    <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
+                        <h3 class="font-tech text-sm font-bold text-brand-dark mb-1 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-green text-base">build_circle</span>
+                            <span>Periodic On-Site Audits[cite: 18]</span>
+                        </h3>
+                        <p class="text-xs text-slate-600">Quarterly engineering visits to service equipment, re-calibrate tools, and restock consumables[cite: 18].</p>
+                    </div>
+
+                    <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
+                        <h3 class="font-tech text-sm font-bold text-brand-dark mb-1 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-green text-base">support_agent</span>
+                            <span>Helpdesk Support[cite: 18]</span>
+                        </h3>
+                        <p class="text-xs text-slate-600">Dedicated phone and email support channel for teachers facing technical software or hardware queries[cite: 18].</p>
+                    </div>
+
+                    <div class="p-5 bg-gray-50 rounded-xl border border-gray-200">
+                        <h3 class="font-tech text-sm font-bold text-brand-dark mb-1 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-brand-green text-base">system_update</span>
+                            <span>Curriculum & Software Updates[cite: 18]</span>
+                        </h3>
+                        <p class="text-xs text-slate-600">Annual updates to software IDEs, robotics firmware, and downloadable lesson project files[cite: 18].</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION (B2B FOCUS) -->
+    <section id="contact-b2b" class="py-16 sm:py-20 bg-brand-dark text-white relative overflow-hidden px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+            
+            <span class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold block">Institutional Advisory[cite: 18]</span>
+            
+            <h2 class="font-tech text-3xl sm:text-4xl lg:text-5xl font-extrabold">
+                Planning a Robotics Lab?[cite: 18]
+            </h2>
+            
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                Connect with our institutional laboratory engineering team to review site blueprints, hardware specifications, and custom cost estimates[cite: 18].
+            </p>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-btn text-white font-bold px-8 py-4 rounded-md text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-lg">
+                    <span>Talk to Our Team[cite: 18]</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+
+            <p class="text-[11px] text-slate-500 font-mono pt-4">
+                Trusted by leading K-12 educational groups and engineering colleges nationwide[cite: 18].
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-slate-400 py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold shrink-0">
+                    <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                </div>
+                <span class="font-tech text-sm font-bold text-white">UniFirst Robotics[cite: 18]</span>
+            </div>
+
+            <p class="text-xs text-slate-500 text-center sm:text-right">
+                © 2026 UniFirst Robotics. All Rights Reserved. Institutional B2B Division[cite: 18].
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

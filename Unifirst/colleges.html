@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>College Programs & Admissions | Robotics & Emerging Tech Learning</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#030712",       /* Obsidian Black */
+                        "secondary": "#0F172A",     /* Deep Dark Slate / Dark Navy */
+                        "accent-dark": "#1E293B",  /* Muted Slate Navy */
+                        "surface": "#F8FAFC",      /* Ultra-Clean Off-White */
+                        "border-muted": "#E2E8F0"
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #030712;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* SaaS Minimal Grid Lines Background */
+        .minimal-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+        }
+
+        .dark-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        /* Glassmorphic Navbar */
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        /* SaaS Dropdown Animations & FX */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.98);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-item {
+            position: relative;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background-color: #0F172A;
+            transition: height 0.2s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .dropdown-item:hover::before {
+            height: 60%;
+        }
+
+        /* Minimal Navigation Underline FX */
+        .nav-link-anim {
+            position: relative;
+        }
+
+        .nav-link-anim::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #0F172A;
+            transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-link-anim:hover::after {
+            width: 100%;
+        }
+
+        /* Minimal Card FX */
+        .minimal-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .minimal-card:hover {
+            transform: translateY(-4px);
+            border-color: #0F172A;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Floating Hero Element Animation */
+        @keyframes floatSaas {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .float-animation {
+            animation: floatSaas 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-secondary selection:text-white">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+        
+        <!-- Company Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+            <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-white group-hover:bg-secondary transition-all duration-300 shadow-sm shrink-0">
+                <span class="material-symbols-outlined text-lg">precision_manufacturing</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-tech text-sm font-bold tracking-tight text-primary leading-tight">ROBOTICS<span class="text-secondary">.EDU</span></span>
+                <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-tight">Enterprise SaaS</span>
+            </div>
+        </a>
+
+        <!-- Main Navigation Links (Desktop) - Professional Clean Typography -->
+        <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold tracking-normal text-gray-600">
+            <a href="index.html" class="hover:text-primary transition-colors py-2">Home</a>
+            
+            <!-- School Dropdown -->
+            <div class="relative group py-5">
+                <a href="schools.html" class="hover:text-primary transition-colors flex items-center gap-1 py-2 focus:outline-none">
+                    School
+                    <span class="material-symbols-outlined text-base text-gray-400 group-hover:text-primary transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                </a>
+                <div class="dropdown-menu absolute top-full left-0 pt-1 w-52">
+                    <div class="bg-white border border-gray-100 rounded-lg shadow-lg py-1.5 px-1">
+                        <a href="grade4.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            <span>Grade 4 Robotics</span>
+                        </a>
+                        <a href="programcourses.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            <span>Program Courses</span>
+                        </a>
+                        <a href="labsetup.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            <span>Robotics Lab Setup</span>
+                        </a>
+                        <div class="my-1 border-t border-gray-100"></div>
+                        <a href="about.html" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            <span>Why Robotics Education</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colleges Dropdown -->
+            <div class="relative group py-5">
+                <a href="colleges.html" class="hover:text-primary transition-colors flex items-center gap-1 py-2 focus:outline-none">
+                    Colleges
+                    <span class="material-symbols-outlined text-base text-gray-400 group-hover:text-primary transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                </a>
+                <div class="dropdown-menu absolute top-full left-0 pt-1 w-56">
+                    <div class="bg-white border border-gray-100 rounded-lg shadow-lg py-1.5 px-1">
+                        <div class="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-admissions" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span>UG Admissions</span>
+                        </a>
+                        <a href="admissions.html#pg-admissions" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span>PG Admissions</span>
+                        </a>
+                        <div class="my-1 border-t border-gray-100"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#overseas-ug" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span>UG Admissions</span>
+                        </a>
+                        <a href="admissions.html#overseas-pg" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                            <span>PG Admissions</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="admissions.html" class="hover:text-primary transition-colors py-2">Admissions</a>
+            <a href="careerCounselling.html" class="hover:text-primary transition-colors py-2">Career Counselling</a>
+            <a href="blogs.html" class="hover:text-primary transition-colors py-2">Blogs</a>
+            <a href="about.html" class="hover:text-primary transition-colors py-2">About</a>
+        </div>
+
+        <!-- Header Action Button -->
+        <div class="flex items-center gap-3">
+            <a href="contact.html" class="hidden md:inline-flex bg-primary text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-secondary transition-all duration-300 items-center gap-1.5 shadow-sm whitespace-nowrap">
+                <span>Enquire Now</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+            <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-primary focus:outline-none p-1.5" aria-label="Open menu">
+                <span class="material-symbols-outlined text-2xl block">menu</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-primary z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-white text-primary flex items-center justify-center font-bold">
+                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                    </div>
+                    <span class="font-tech text-base font-bold tracking-wider text-white">ROBOTICS.EDU</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-gray-400 hover:text-white p-2" aria-label="Close menu">
+                    <span class="material-symbols-outlined text-3xl block">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-6 text-sm font-tech tracking-wider uppercase font-bold text-gray-300">
+                <a href="index.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">HOME</a>
+                
+                <a href="schools.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">SCHOOL</a>
+
+                <!-- Mobile Colleges Submenu -->
+                <div class="space-y-2 py-2 border-l-2 border-gray-800 pl-4">
+                    <a href="colleges.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-white block mb-2 font-bold">COLLEGES</a>
+                    <a href="admissions.html#ug-admissions" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-gray-400 font-sans font-medium hover:text-white py-1">UG Admissions</a>
+                    <a href="admissions.html#pg-admissions" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-gray-400 font-sans font-medium hover:text-white py-1">PG Admissions</a>
+                    <a href="workshops.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-gray-400 font-sans font-medium hover:text-white py-1">Practical Workshops</a>
+                </div>
+
+                <a href="admissions.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="workshops.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">WORKSHOPS</a>
+                <a href="blogs.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">ABOUT</a>
+                <a href="founder.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">FOUNDER</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-gray-800 mt-8">
+            <a href="contact.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-white text-primary py-3.5 rounded-lg font-extrabold uppercase text-xs tracking-widest">
+                Partner With Us
+            </a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-28 minimal-grid overflow-hidden border-b border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+            
+            <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface border border-gray-200 text-secondary text-xs tracking-wider font-bold uppercase shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    Higher Education & Academic Growth
+                </div>
+
+                <h1 class="font-tech text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[1.15]">
+                    Empowering <span class="bg-secondary text-white px-2.5 py-0.5 rounded inline-block">Students</span>Through Technology
+                </h1>
+
+                <p class="text-base sm:text-lg text-gray-600 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    We deliver specialized higher-education solutions designed to elevate technical skills and accelerate academic careers. From comprehensive undergraduate and postgraduate admissions guidance to hands-on technology workshops, we prepare tomorrow's engineers and leaders for tomorrow's challenges.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="admissions.html" class="w-full sm:w-auto bg-primary text-white font-bold px-8 py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300 shadow-lg text-center">
+                        Explore Admissions
+                    </a>
+                    <a href="workshops.html" class="w-full sm:w-auto border-2 border-primary text-primary font-bold px-8 py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all text-center">
+                        View Workshops
+                    </a>
+                </div>
+            </div>
+
+            <!-- SaaS Hero Preview Visual -->
+            <div class="lg:col-span-5 relative flex justify-center mt-6 lg:mt-0">
+                <div class="relative w-full max-w-sm sm:max-w-md aspect-square rounded-2xl bg-primary p-3 shadow-2xl float-animation">
+                    <div class="w-full h-full bg-secondary rounded-xl overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="College students collaborating in a modern tech workshop" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 grayscale">
+                        
+                        <!-- Floating HUD Badge -->
+                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-primary/90 border border-gray-800 text-white backdrop-blur-md">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-lg bg-secondary text-white flex items-center justify-center font-bold shrink-0">
+                                    <span class="material-symbols-outlined text-xl">school</span>
+                                </div>
+                                <div>
+                                    <p class="font-tech text-xs sm:text-sm font-bold leading-tight">College & Career Pathways</p>
+                                    <p class="text-[11px] text-gray-400 leading-tight mt-0.5">UG • PG • Industrial Robotics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- OFFERINGS / ADMISSIONS & WORKSHOPS SECTION -->
+    <section class="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <span class="text-secondary text-xs uppercase font-extrabold tracking-widest block mb-2.5">Higher Education Pathways</span>
+                <h2 class="font-tech text-2xl sm:text-4xl lg:text-5xl font-bold text-primary">College-Focused Offerings</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+                
+                <!-- UG Admissions Card -->
+                <div id="ug-admissions" class="minimal-card bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-2xl">history_edu</span>
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest block mb-1">Undergraduate</span>
+                        <h3 class="font-tech text-xl font-bold text-primary mb-3">UG Admissions</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                            Support for students exploring undergraduate admission opportunities across top engineering and tech institutions.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="admissions.html#ug-admissions" class="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-bold px-6 py-3.5 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary transition-all">
+                            <span>Explore UG Admissions</span>
+                            <span class="material-symbols-outlined text-base">east</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PG Admissions Card -->
+                <div id="pg-admissions" class="minimal-card bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest block mb-1">Postgraduate</span>
+                        <h3 class="font-tech text-xl font-bold text-primary mb-3">PG Admissions</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                            Support for students exploring postgraduate admission opportunities in specialized engineering and technology programs.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="admissions.html#pg-admissions" class="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-bold px-6 py-3.5 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary transition-all">
+                            <span>Explore PG Admissions</span>
+                            <span class="material-symbols-outlined text-base">east</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Workshops Card -->
+                <div id="workshops" class="minimal-card bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+                        </div>
+                        <span class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest block mb-1">Practical Learning</span>
+                        <h3 class="font-tech text-xl font-bold text-primary mb-3">Workshops</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                            Practical robotics and technology workshops designed for college students to bridge theory with hands-on application.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="workshops.html" class="w-full inline-flex items-center justify-center gap-2 border-2 border-primary text-primary font-bold px-6 py-3.5 rounded-lg text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
+                            <span>Explore Workshops</span>
+                            <span class="material-symbols-outlined text-base">east</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLEGE PARTNERSHIP CTA SECTION -->
+    <section id="partner" class="py-16 sm:py-20 lg:py-28 bg-primary text-white relative overflow-hidden dark-grid-pattern px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+            <span class="text-gray-400 text-xs font-mono uppercase tracking-widest block">Academic Partnerships</span>
+            <h2 class="font-tech text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                Bring Practical Technology Learning to Your Campus
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                Partner with us to transform technical education at your institution. We set up advanced robotics labs, organize industry workshops, and guide students toward global academic success.
+            </p>
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="contact.html" class="w-full sm:w-auto bg-white text-primary font-bold px-8 py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all shadow-md flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-base">handshake</span>
+                    <span>Partner With Us</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION -->
+    <section id="contact" class="py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
+        <div class="max-w-3xl mx-auto bg-white p-8 sm:p-12 lg:p-14 rounded-2xl border border-gray-200 shadow-sm">
+            <div class="text-center mb-10 sm:mb-12">
+                <span class="text-secondary text-xs uppercase font-extrabold tracking-widest block mb-2">Higher Education Inquiries</span>
+                <h2 class="font-tech text-2xl sm:text-3xl font-bold text-primary">Connect With Our Academic Advisors</h2>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Inquiry Submitted Successfully!');" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-gray-700 mb-2">Name</label>
+                        <input type="text" placeholder="Your Name" required class="w-full bg-surface border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-primary focus:outline-none focus:border-secondary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-gray-700 mb-2">Email</label>
+                        <input type="email" placeholder="your@email.com" required class="w-full bg-surface border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-primary focus:outline-none focus:border-secondary">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000" required class="w-full bg-surface border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-primary focus:outline-none focus:border-secondary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-widest text-gray-700 mb-2">Service / Interest</label>
+                        <select required class="w-full bg-surface border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-primary focus:outline-none focus:border-secondary">
+                            <option value="" disabled selected>Select Requirement</option>
+                            <option value="ug">UG Admissions Assistance</option>
+                            <option value="pg">PG Admissions Assistance</option>
+                            <option value="workshops">College Practical Workshops</option>
+                            <option value="partnership">Campus Partnership / MOU</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-gray-700 mb-2">Message / Details</label>
+                    <textarea rows="4" placeholder="Tell us about your institution or admission targets..." required class="w-full bg-surface border border-gray-200 rounded-lg px-4 py-3.5 text-sm text-primary focus:outline-none focus:border-secondary"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary transition-all duration-300">
+                    Submit Inquiry
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary text-gray-400 py-10 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-white text-primary flex items-center justify-center font-bold shrink-0">
+                    <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                </div>
+                <span class="font-tech text-sm font-bold tracking-wider text-white">ROBOTICS.EDU</span>
+            </a>
+
+            <p class="text-xs text-gray-500 text-center sm:text-right">
+                © 2026 Educational Robotics Company. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
