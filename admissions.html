@@ -283,10 +283,10 @@
                         </p>
                     </div>
                     <div>
-                        <button onclick="selectCategory('UG Admissions (India)')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
+                        <a href="https://unifirstrobotics.edumilestones.com/login/global-admissions/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
                             <span>Apply for UG (India)</span>
                             <span class="material-symbols-outlined text-base">east</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -303,10 +303,10 @@
                         </p>
                     </div>
                     <div>
-                        <button onclick="selectCategory('PG Admissions (India)')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
+                        <a href="https://unifirstrobotics.edumilestones.com/login/global-admissions/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
                             <span>Apply for PG (India)</span>
                             <span class="material-symbols-outlined text-base">east</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -323,10 +323,10 @@
                         </p>
                     </div>
                     <div>
-                        <button onclick="selectCategory('UG Admissions (Overseas)')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
+                        <a href="https://unifirstrobotics.edumilestones.com/abroad-studies/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
                             <span>Apply for UG (Overseas)</span>
                             <span class="material-symbols-outlined text-base">east</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -343,10 +343,10 @@
                         </p>
                     </div>
                     <div>
-                        <button onclick="selectCategory('PG Admissions (Overseas)')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
+                        <a href="https://unifirstrobotics.edumilestones.com/abroad-studies/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold px-6 py-3.5 rounded-md text-xs uppercase tracking-wider hover:bg-slate-800 transition-all">
                             <span>Apply for PG (Overseas)</span>
                             <span class="material-symbols-outlined text-base">east</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -445,18 +445,6 @@
     </footer>
 
     <script>
-        // Smoothly select category and scroll to form
-        function selectCategory(categoryName) {
-            const selectElem = document.getElementById('admission-category');
-            if (selectElem) {
-                selectElem.value = categoryName;
-            }
-            const contactSection = document.getElementById('contact-form');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
         // Form submission handler
         function handleFormSubmit(event) {
             event.preventDefault();
