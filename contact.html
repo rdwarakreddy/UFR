@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Contact Us & Location | Robotics.Edu</title>
+    <title>Contact Us & Location | UniFirst Robotics</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -16,19 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
     <!-- FontAwesome for Social Media Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Tailwind Config -->
+    <!-- Custom Tailwind Theme Colors (Matching home.html) -->
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#030712",       /* Obsidian Black */
-                        "secondary": "#0F172A",     /* Deep Dark Slate / Dark Navy */
-                        "accent-dark": "#1E293B",  /* Muted Slate Navy */
-                        "surface": "#F8FAFC",      /* Ultra-Clean Off-White */
-                        "border-muted": "#E2E8F0"
+                        "brand-dark": "#0B132B",      /* Dark Navy Header / Banners */
+                        "brand-bg": "#FFFFFF",        /* Pure White Background */
+                        "brand-green": "#52D68A",     /* Emerald/Mint Green Accent */
+                        "brand-coral": "#FA9D8E",     /* Soft Salmon / Coral Cards */
+                        "brand-btn": "#FF4D30",       /* Vibrant Red-Orange Buttons */
+                        "brand-text": "#111827",      /* Deep charcoal text */
                     },
                     fontFamily: {
                         'tech': ['Space Grotesk', 'sans-serif'],
@@ -42,21 +43,21 @@
     <style>
         body {
             background-color: #FFFFFF;
-            color: #030712;
+            color: #111827;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Technical Grid Pattern */
+        /* Minimal Grid Pattern */
         .minimal-grid {
-            background-size: 40px 40px;
+            background-size: 32px 32px;
             background-image: 
-                linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
         }
 
         .dark-grid-pattern {
-            background-size: 40px 40px;
+            background-size: 32px 32px;
             background-image: 
                 linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
@@ -64,190 +65,246 @@
 
         /* Glassmorphic Navbar */
         .glass-nav {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
         }
 
-        /* SaaS Dropdown Animations & FX */
+        /* Dropdown Animations */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
-            transform: translateY(8px) scale(0.98);
+            transform: translateY(8px);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .group:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
-        /* B2B Professional Card FX */
-        .b2b-card {
+        /* Card Depth & Shadow */
+        .card-depth {
+            box-shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.12), 0 8px 10px -6px rgba(11, 19, 43, 0.08);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .b2b-card:hover {
+        .card-depth:hover {
             transform: translateY(-4px);
-            border-color: #0F172A;
-            box-shadow: 0 16px 32px -10px rgba(15, 23, 42, 0.06);
+            box-shadow: 0 20px 35px -5px rgba(11, 19, 43, 0.18), 0 10px 15px -5px rgba(11, 19, 43, 0.1);
+        }
+
+        /* ===== Zoho CRM form skin (scoped to #crmWebToEntityForm; visual only) ===== */
+        #crmWebToEntityForm.zcwf_lblLeft {
+            max-width: none !important;
+            width: 100%;
+            padding: 0 !important;
+            background-color: transparent !important;
+            color: #111827 !important;
+        }
+        #crmWebToEntityForm .zcwf_title {
+            position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+        }
+        #crmWebToEntityForm .zcwf_row { margin: 0 0 20px 0; }
+        #crmWebToEntityForm .zcwf_col_lab,
+        #crmWebToEntityForm .zcwf_col_fld {
+            float: none !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-height: 0;
+        }
+        #crmWebToEntityForm .zcwf_col_lab { margin-bottom: 8px !important; }
+        #crmWebToEntityForm .zcwf_col_lab label {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #374151;
+        }
+        #crmWebToEntityForm .zcwf_col_help { display: none; }
+        #crmWebToEntityForm .zcwf_col_fld input[type=text],
+        #crmWebToEntityForm .zcwf_col_fld textarea,
+        #crmWebToEntityForm .zcwf_col_fld_slt {
+            float: none !important;
+            width: 100% !important;
+            display: block;
+            padding: 12px 16px;
+            border: 1px solid #E5E7EB !important;
+            border-radius: 12px !important;
+            background-color: #FFFFFF;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 12px;
+            color: #111827;
+            box-shadow: none;
+            outline: none;
+        }
+        #crmWebToEntityForm .zcwf_col_fld textarea { min-height: 110px; resize: vertical; }
+        #crmWebToEntityForm .zcwf_col_fld input[type=text]:focus,
+        #crmWebToEntityForm .zcwf_col_fld textarea:focus,
+        #crmWebToEntityForm .zcwf_col_fld_slt:focus {
+            border-color: #0B132B !important;
+            box-shadow: none;
+            outline: none;
+        }
+        #crmWebToEntityForm .zcwf_col_fld .formsubmit.zcwf_button,
+        #crmWebToEntityForm .zcwf_col_fld .zcwf_button {
+            max-width: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        #crmWebToEntityForm .formsubmit.zcwf_button {
+            background: #FF4D30 !important;
+            color: #FFFFFF !important;
+            border: 1px solid #FF4D30 !important;
+            margin-right: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        #crmWebToEntityForm .formsubmit.zcwf_button:hover:not([disabled]) { background: #DC2626 !important; border-color: #DC2626 !important; }
+        #crmWebToEntityForm .formsubmit.zcwf_button[disabled] { opacity: .6; cursor: not-allowed; }
+        #crmWebToEntityForm input[type=reset].zcwf_button {
+            background: #FFFFFF;
+            color: #0B132B;
+            border: 1px solid #CBD5E1;
+        }
+        #crmWebToEntityForm input[type=reset].zcwf_button:hover { border-color: #0B132B; }
+        @media (max-width: 480px) {
+            #crmWebToEntityForm .zcwf_col_fld .zcwf_button { width: 100%; margin: 0 0 10px 0; }
         }
     </style>
 </head>
 
-<body class="antialiased selection:bg-secondary selection:text-white">
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
 
-    <!-- HEADER / NAVIGATION BAR -->
-   <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-200">
+    <!-- GLOBAL NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
             
-            <!-- Company Logo -->
-            <a href="index.html" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 rounded-lg bg-[#0F172A] flex items-center justify-center text-white transition-all duration-300 shadow-sm shrink-0">
-                    <span class="material-symbols-outlined text-lg">precision_manufacturing</span>
+            <!-- Company Logo & Branding -->
+            <a href="home.html" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                    <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-tech text-sm font-bold tracking-tight text-[#0F172A] leading-tight">ROBOTICS<span class="text-[#0F172A]">.EDU</span></span>
-                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-bold leading-tight">Unifirst Robotics</span>
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
                 </div>
             </a>
 
-            <!-- Main Navigation Links (Desktop) -->
-            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold tracking-normal text-slate-600">
-                <a href="index.html" class="hover:text-[#0F172A] transition-colors py-2">Home</a>
-                <a href="schools.html" class="hover:text-[#0F172A] transition-colors py-2">Schools</a>
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold text-slate-300">
+                <a href="home.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="schools.html" class="hover:text-white transition-colors py-2">Schools</a>
                 
-                <!-- Admissions Dropdown (Includes Sub-items from Colleges) -->
-                <div class="relative group py-5">
-                    <a href="admissions.html" class="hover:text-[#0F172A] transition-colors flex items-center gap-1 py-2 focus:outline-none">
+                <!-- Admissions Dropdown -->
+                <div class="relative group py-4">
+                    <a href="admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
                         Admissions
-                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-[#0F172A] transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
                     </a>
-                    <div class="dropdown-menu absolute top-full left-0 pt-1 w-56">
-                        <div class="bg-white border border-slate-100 rounded-lg shadow-lg py-1.5 px-1">
-                            <div class="px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">India</div>
-                            <a href="admissions.html#ug-india" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span>UG Admissions</span>
-                            </a>
-                            <a href="admissions.html#pg-india" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span>PG Admissions</span>
-                            </a>
-                            <div class="my-1 border-t border-slate-100"></div>
-                            <div class="px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Overseas</div>
-                            <a href="admissions.html#ug-overseas" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span>UG Admissions</span>
-                            </a>
-                            <a href="admissions.html#pg-overseas" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span>PG Admissions</span>
-                            </a>
-                        </div>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
                     </div>
                 </div>
 
                 <!-- Career Counselling Dropdown -->
-                <div class="relative group py-5">
-                    <a href="careerCounselling.html" class="hover:text-[#0F172A] transition-colors flex items-center gap-1 py-2 focus:outline-none">
+                <div class="relative group py-4">
+                    <a href="careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
                         Career Counselling
-                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-[#0F172A] transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
                     </a>
-                    <div class="dropdown-menu absolute top-full left-0 pt-1 w-52">
-                        <div class="bg-white border border-slate-100 rounded-lg shadow-lg py-1.5 px-1">
-                            <a href="careerCounselling.html#students" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                                <span>Students</span>
-                            </a>
-                            <a href="careerCounselling.html#graduates" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                                <span>Graduates</span>
-                            </a>
-                            <a href="careerCounselling.html#working-professionals" class="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-[#0F172A] transition-colors">
-                                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                                <span>Working Professionals</span>
-                            </a>
-                        </div>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
                     </div>
                 </div>
 
-                <a href="blogs.html" class="hover:text-[#0F172A] transition-colors py-2">Blogs</a>
-                <a href="about.html" class="text-[#0F172A] font-bold transition-colors py-2">About Us</a>
+                <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
+                <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+                <a href="certificateVerification.html" class="hover:text-white transition-colors py-2">Certificate Verification</a>
             </div>
 
-            <!-- Header Action Button -->
+            <!-- Action Button -->
             <div class="flex items-center gap-3">
-                <a href="contact.html" class="hidden md:inline-flex bg-[#0F172A] text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-slate-800 transition-all duration-300 items-center gap-1.5 shadow-sm whitespace-nowrap">
+                <a href="contact.html" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
                     <span>Enquire Now</span>
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
-                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-[#0F172A] focus:outline-none p-1.5" aria-label="Open menu">
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
                     <span class="material-symbols-outlined text-2xl block">menu</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-[#0F172A] z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 text-white lg:hidden overflow-y-auto">
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
         <div>
             <div class="flex justify-between items-center mb-8">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded bg-white text-[#0F172A] flex items-center justify-center font-bold">
-                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                    <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="Logo" class="w-full h-full object-cover">
                     </div>
-                    <span class="font-tech text-base font-bold tracking-wider text-white">ROBOTICS.EDU</span>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
                 </div>
-                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5" aria-label="Close menu">
-                    <span class="material-symbols-outlined text-3xl block">close</span>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5">
+                    <span class="material-symbols-outlined text-3xl">close</span>
                 </button>
             </div>
             
-            <nav class="flex flex-col gap-5 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
-                <a href="index.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">HOME</a>
-                <a href="schools.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">SCHOOLS</a>
-
-                <!-- Mobile Admissions Submenu -->
-                <div class="space-y-1 py-1 border-l-2 border-slate-800 pl-4">
-                    <a href="admissions.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-xs font-extrabold uppercase tracking-widest text-white block mb-1">ADMISSIONS</a>
-                    <a href="admissions.html#ug-india" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">UG Admissions (India)</a>
-                    <a href="admissions.html#pg-india" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">PG Admissions (India)</a>
-                    <a href="admissions.html#ug-overseas" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">UG Admissions (Overseas)</a>
-                    <a href="admissions.html#pg-overseas" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">PG Admissions (Overseas)</a>
-                </div>
-
-                <!-- Mobile Career Counselling Submenu -->
-                <div class="space-y-1 py-1 border-l-2 border-slate-800 pl-4">
-                    <a href="careerCounselling.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-xs font-extrabold uppercase tracking-widest text-white block mb-1">CAREER COUNSELLING</a>
-                    <a href="careerCounselling.html#students" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">Students</a>
-                    <a href="careerCounselling.html#graduates" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">Graduates</a>
-                    <a href="careerCounselling.html#working-professionals" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block text-xs capitalize text-slate-300 font-sans font-medium hover:text-white py-1">Working Professionals</a>
-                </div>
-
-                <a href="blogs.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="hover:text-white py-1">BLOGS</a>
-                <a href="about.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-white py-1">ABOUT US</a>
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+                <a href="certificateVerification.html" class="hover:text-white py-1">Certificate Verification</a>
             </nav>
         </div>
 
         <div class="pt-6 border-t border-slate-800 mt-8">
-            <a href="contact.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-white text-[#0F172A] py-3.5 rounded-lg font-extrabold uppercase text-xs tracking-widest">
+            <a href="contact.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
                 Enquire Now
             </a>
         </div>
     </div>
 
     <!-- HERO SECTION -->
-    <header class="relative pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 minimal-grid overflow-hidden border-b border-gray-200/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <header class="relative pt-36 sm:pt-44 pb-20 sm:pb-28 border-b border-gray-200 overflow-hidden bg-brand-dark text-white">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/80"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             
-            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface border border-gray-200 text-secondary text-xs tracking-wider font-bold uppercase shadow-sm mb-6">
-                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+            <div class="inline-block bg-brand-green/20 border border-brand-green/40 text-brand-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-sm backdrop-blur-md">
                 Get In Touch
             </div>
 
-            <h1 class="font-tech text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[1.12] max-w-4xl mx-auto mb-6">
-                Let's Start a <span class="bg-secondary text-white px-2 py-0.5 rounded inline-block">Conversation</span>
+            <h1 class="font-tech text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto mb-6">
+                Let's Start a <span class="text-brand-green">Conversation</span>
             </h1>
 
-            <p class="text-sm sm:text-base lg:text-lg text-gray-600 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p class="text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
                 Whether you are an educational institution looking to setup a robotics lab, a student seeking program details, or a prospective partner, we're here to help.
             </p>
 
@@ -263,69 +320,70 @@
                 <div class="lg:col-span-5 space-y-8">
                     <div>
                         <div class="flex items-center gap-2.5 mb-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
-                            <span class="text-secondary text-xs uppercase font-extrabold tracking-widest">Reach Us Directly</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+                            <span class="text-brand-btn text-xs uppercase font-extrabold tracking-widest">Reach Us Directly</span>
                         </div>
-                        <h2 class="font-tech text-2xl sm:text-3xl font-bold text-primary mb-4">Contact Information</h2>
-                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        <h2 class="font-tech text-2xl sm:text-3xl font-extrabold text-brand-dark mb-4">Contact Information</h2>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             Our team is available Monday through Saturday to answer questions regarding institutional lab deployments, curriculum integration, and student admissions.
                         </p>
                     </div>
 
                     <div class="space-y-6 pt-2">
                         <!-- Phone -->
-                        <div class="flex items-start gap-4 p-5 bg-surface rounded-2xl border border-gray-200">
-                            <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                        <div class="flex items-start gap-4 p-5 bg-slate-50/80 rounded-2xl border border-gray-200 card-depth">
+                            <div class="w-10 h-10 rounded-xl bg-brand-dark text-brand-green flex items-center justify-center shrink-0 shadow-sm">
                                 <span class="material-symbols-outlined text-xl">call</span>
                             </div>
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">Phone</span>
-                                <span class="font-tech text-sm sm:text-base font-bold text-primary block">[Phone Number]</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Phone</span>
+                                <a href="tel:+919100102102" class="font-tech text-sm sm:text-base font-bold text-brand-dark hover:text-brand-btn transition-colors block">+91 91001 02102</a>
                             </div>
                         </div>
 
                         <!-- Email -->
-                        <div class="flex items-start gap-4 p-5 bg-surface rounded-2xl border border-gray-200">
-                            <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                        <div class="flex items-start gap-4 p-5 bg-slate-50/80 rounded-2xl border border-gray-200 card-depth">
+                            <div class="w-10 h-10 rounded-xl bg-brand-dark text-brand-green flex items-center justify-center shrink-0 shadow-sm">
                                 <span class="material-symbols-outlined text-xl">mail</span>
                             </div>
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">Email</span>
-                                <span class="font-tech text-sm sm:text-base font-bold text-primary block">[Email Address]</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Email</span>
+                                <a href="mailto:info@unifirstrobotics.com" class="font-tech text-sm sm:text-base font-bold text-brand-dark hover:text-brand-btn transition-colors block">info@unifirstrobotics.com</a>
                             </div>
                         </div>
 
                         <!-- Address -->
-                        <div class="flex items-start gap-4 p-5 bg-surface rounded-2xl border border-gray-200">
-                            <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                        <div class="flex items-start gap-4 p-5 bg-slate-50/80 rounded-2xl border border-gray-200 card-depth">
+                            <div class="w-10 h-10 rounded-xl bg-brand-dark text-brand-green flex items-center justify-center shrink-0 shadow-sm">
                                 <span class="material-symbols-outlined text-xl">location_on</span>
                             </div>
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">Address</span>
-                                <span class="font-tech text-sm sm:text-base font-bold text-primary block leading-relaxed">[Office Address]</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">Office Address</span>
+                                <span class="font-tech text-sm sm:text-base font-bold text-brand-dark block leading-relaxed">
+                                    #12, 3rd Floor, STEM & Innovation Hub, Outer Ring Rd, Marathahalli, Bengaluru, Karnataka 560037
+                                </span>
                             </div>
                         </div>
                     </div>
 
                     <!-- SOCIAL MEDIA SECTION -->
                     <div class="pt-6 border-t border-gray-100">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-4">Connect On Social Media</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-4">Connect On Social Media</span>
                         <div class="flex items-center gap-3">
-                            <!-- Instagram -->
-                            <a href="#" class="w-10 h-10 rounded-xl bg-surface border border-gray-200 text-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm" aria-label="Instagram">
+                            <a href="https://www.instagram.com/unifirst_robotics/?utm_medium=copy_link" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-brand-dark text-slate-300 hover:bg-brand-green hover:text-brand-dark flex items-center justify-center transition-colors shadow-sm" aria-label="Instagram">
                                 <i class="fa-brands fa-instagram text-base"></i>
                             </a>
-                            <!-- Facebook -->
-                            <a href="#" class="w-10 h-10 rounded-xl bg-surface border border-gray-200 text-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm" aria-label="Facebook">
+                            <a href="https://www.facebook.com/unifirstrobotics" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-brand-dark text-slate-300 hover:bg-brand-green hover:text-brand-dark flex items-center justify-center transition-colors shadow-sm" aria-label="Facebook">
                                 <i class="fa-brands fa-facebook-f text-base"></i>
                             </a>
-                            <!-- LinkedIn -->
-                            <a href="#" class="w-10 h-10 rounded-xl bg-surface border border-gray-200 text-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/company/unifirst-robotics/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-brand-dark text-slate-300 hover:bg-brand-green hover:text-brand-dark flex items-center justify-center transition-colors shadow-sm" aria-label="LinkedIn">
                                 <i class="fa-brands fa-linkedin-in text-base"></i>
                             </a>
-                            <!-- YouTube -->
-                            <a href="#" class="w-10 h-10 rounded-xl bg-surface border border-gray-200 text-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm" aria-label="YouTube">
+                            <a href="https://www.youtube.com/channel/UCVcR1qDq-Xp-SfqozXcU9Gw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-brand-dark text-slate-300 hover:bg-brand-green hover:text-brand-dark flex items-center justify-center transition-colors shadow-sm" aria-label="YouTube">
                                 <i class="fa-brands fa-youtube text-base"></i>
+                            </a>
+                            <a href="https://x.com/ufrblr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-brand-dark text-slate-300 hover:bg-brand-green hover:text-brand-dark flex items-center justify-center transition-colors shadow-sm" aria-label="X / Twitter">
+                                <i class="fa-brands fa-x-twitter text-base"></i>
                             </a>
                         </div>
                     </div>
@@ -334,56 +392,256 @@
 
                 <!-- CONTACT FORM COLUMN -->
                 <div class="lg:col-span-7">
-                    <div class="bg-surface p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-sm">
-                        <h3 class="font-tech text-xl sm:text-2xl font-bold text-primary mb-2">Send an Enquiry</h3>
-                        <p class="text-xs sm:text-sm text-gray-600 mb-8">Fill out the form below and our institutional relations team will get back to you within 24 business hours.</p>
+                    <div class="bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 card-depth">
+                        <h3 class="font-tech text-xl sm:text-2xl font-bold text-brand-dark mb-2">Send an Enquiry</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mb-8">Fill out the form below and our institutional relations team will get back to you within 24 business hours.</p>
 
-                        <form onsubmit="event.preventDefault();" class="space-y-5">
-                            <!-- Full Name -->
-                            <div>
-                                <label for="full-name" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" id="full-name" required placeholder="e.g. Dr. Rajesh Kumar" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-0 text-xs text-primary placeholder-gray-400 bg-white" />
-                            </div>
+                        <!-- ZOHO CRM WEB-TO-LEAD FORM (Unmodified Form Code) -->
+                        <div id = 'crmWebToEntityForm' class = 'zcwf_lblLeft crmWebToEntityForm' style = 'background-color: white;color: black;max-width: 600px;'>
+                            <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+                            <META HTTP-EQUIV = 'content-type' CONTENT = 'text/html;charset=UTF-8'>
+                            <form id = 'webform1436762000000660001' action = 'https://crm.zoho.in/crm/WebToLeadForm' name = WebToLeads1436762000000660001 method = 'POST' onSubmit = 'javascript:document.charset="UTF-8"; return checkMandatory1436762000000660001()' accept-charset = 'UTF-8'>
+                                <input type = 'text' style = 'display:none;' name = 'xnQsjsdp' value = 'd7a8aa63c92e8f67d5fcaccef426b77cf67465899427bbcf7ba2e710804d042c'></input>
+                                <input type = 'hidden' name = 'zc_gad' id = 'zc_gad' value = ''></input>
+                                <input type = 'text' style = 'display:none;' name = 'xmIwtLD' value = 'dfb85c2d605153d4995e90976c76f58d85ffcf9fa6a05dfd9b5b2d7e941c94e75dd1d0a0ac93466d14ff1ffc0ee85250'></input>
+                                <input type = 'text' style = 'display:none;' name = 'actionType' value = 'TGVhZHM='></input>
+                                <input type = 'text' style = 'display:none;' name = 'returnURL' value = 'null'></input>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                <!-- Email -->
-                                <div>
-                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Email Address *</label>
-                                    <input type="email" id="email" required placeholder="name@institution.edu" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-0 text-xs text-primary placeholder-gray-400 bg-white" />
+                                <style>
+                                    html,body{ margin: 0px; }
+                                    .formsubmit.zcwf_button{ color: white !important; background: transparent linear-gradient(0deg, #0279FF 0%, #00A3F3 100%); }
+                                    #crmWebToEntityForm.zcwf_lblLeft{ width: 100%; padding: 25px; margin: 0 auto; box-sizing: border-box; }
+                                    #crmWebToEntityForm.zcwf_lblLeft *{ box-sizing: border-box; }
+                                    #crmWebToEntityForm{ text-align: left; }
+                                    #crmWebToEntityForm *{ direction: ltr; }
+                                    .zcwf_lblLeft .zcwf_title{ word-wrap: break-word; padding: 0px 6px 10px; font-weight: bold }
+                                    .zcwf_lblLeft.cpT_primaryBtn:hover{ background: linear-gradient(#02acff 0,#006be4 100%)no-repeat padding-box !important; box-shadow: 0 -2px 0 0  #0159b9 inset !important; border: 0 !important; color:  #fff !important; outline: 0 !important; }
+                                    .zcwf_lblLeft .zcwf_col_fld input[ type  = text], input[ type  = password], .zcwf_lblLeft .zcwf_col_fld textarea{ width: 60%; border: 1px solid  #c0c6cc !important; resize: vertical; border-radius: 2px; float: left; }
+                                    .zcwf_lblLeft .zcwf_col_lab{ width: 30%; word-break: break-word; padding: 0px 6px 0px; margin-right: 10px; margin-top: 5px; float: left; min-height: 1px; }
+                                    .zcwf_lblLeft .zcwf_col_fld{ float: left; width: 68%; padding: 0px 6px 0px; position: relative; margin-top: 5px; }
+                                    .zcwf_lblLeft .zcwf_privacy{ padding: 6px; }
+                                    .zcwf_lblLeft .wfrm_fld_dpNn{ display: none; }
+                                    .dIB{ display: inline-block; }
+                                    .zcwf_lblLeft .zcwf_col_fld_slt{ width: 60%; border: 1px solid  #ccc; background:  #fff; border-radius: 4px; font-size: 12px; float: left; resize: vertical; padding: 2px 5px; }
+                                    .zcwf_lblLeft .zcwf_row:after, .zcwf_lblLeft .zcwf_col_fld:after{ content: ''; display: table; clear: both; }
+                                    .zcwf_lblLeft .zcwf_col_help{ float: left; margin-left: 7px; font-size: 12px; max-width: 35%; word-break: break-word; }
+                                    .zcwf_lblLeft .zcwf_help_icon{ cursor: pointer; width: 16px; height: 16px; display: inline-block; background:  #fff; border: 1px solid  #c0c6cc; color:  #c1c1c1; text-align: center; font-size: 11px; line-height: 16px; font-weight: bold; border-radius: 50%; }
+                                    .zcwf_lblLeft .zcwf_row{ margin: 15px 0px; }
+                                    .zcwf_lblLeft .formsubmit{ margin-right: 5px; cursor: pointer; color:  #313949; font-size: 12px; }
+                                    .zcwf_lblLeft .zcwf_privacy_txt{ width: 90%; color: rgb(0, 0, 0); font-size: 12px; font-family: Arial; display: inline-block; vertical-align: top; color:  #313949; padding-top: 2px; margin-left: 6px; }
+                                    .zcwf_lblLeft .zcwf_button{ font-size: 12px; color:  #313949; border: 1px solid  #c0c6cc; padding: 3px 9px; border-radius: 4px; cursor: pointer; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                                    .zcwf_lblLeft .zcwf_tooltip_over{ position: relative; }
+                                    .zcwf_lblLeft .zcwf_tooltip_ctn{ position: absolute; background:  #dedede; padding: 3px 6px; top: 3px; border-radius: 4px; word-break: break-word; min-width: 100px; max-width: 150px; color:  #313949; z-index: 100; }
+                                    .zcwf_lblLeft .zcwf_ckbox{ float: left; }
+                                    .zcwf_lblLeft .zcwf_file{ width: 55%; box-sizing: border-box; float: left; }
+                                    .cBoth:after{ content: ''; display: block; clear: both; }
+                                    @media all and  (max-width: 600px){
+                                        .zcwf_lblLeft .zcwf_col_lab, .zcwf_lblLeft .zcwf_col_fld{ width: auto; float: none !important; }
+                                        .zcwf_lblLeft .zcwf_col_help{ width: 40%; }
+                                    }
+                                </style>
+
+                                <div class = 'zcwf_title' style = 'max-width: 600px;color: black; font-family:Arial;'>Website Contact Us - Enquiry</div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'First_Name'>First Name</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'text' id = 'First_Name' aria-required = 'false' aria-label = 'First Name' name = 'First Name' aria-valuemax = '40' maxlength = '40'></input>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
                                 </div>
-
-                                <!-- Phone -->
-                                <div>
-                                    <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Phone Number *</label>
-                                    <input type="tel" id="phone" required placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-0 text-xs text-primary placeholder-gray-400 bg-white" />
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Last_Name'>Last Name <span style = 'color:red;'>*</span></label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'text' id = 'Last_Name' aria-required = 'true' aria-label = 'Last Name' name = 'Last Name' aria-valuemax = '80' maxlength = '80'></input>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Mobile'>Mobile <span style = 'color:red;'>*</span></label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'text' id = 'Mobile' aria-required = 'true' aria-label = 'Mobile' name = 'Mobile' aria-valuemax = '30' maxlength = '30'></input>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Email'>Email</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'text' ftype = 'email' autocomplete = 'false' id = 'Email' aria-required = 'false' aria-label = 'Email' name = 'Email' aria-valuemax = '100' crmlabel = '' maxlength = '100'></input>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'LEADCF4'>Qualification</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <select class = 'zcwf_col_fld_slt' role = 'combobox' aria-expanded = 'false' aria-haspopup = 'listbox' id = 'LEADCF4' onChange = 'addAriaSelected1436762000000660001()' aria-required = 'false' aria-label = 'LEADCF4' name = 'LEADCF4'>
+                                            <option value = '-None-'>-None-</option>
+                                            <option value = 'Class 6-8'>Class 6-8</option>
+                                            <option value = 'Class 9-10'>Class 9-10</option>
+                                            <option value = 'Class 11-12'>Class 11-12</option>
+                                            <option value = 'Diploma'>Diploma</option>
+                                            <option value = 'UG'>UG</option>
+                                            <option value = 'PG'>PG</option>
+                                            <option value = 'Working'>Working</option>
+                                        </select>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Company'>Institution Name-</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'text' id = 'Company' aria-required = 'false' aria-label = 'Company' name = 'Company' aria-valuemax = '200' maxlength = '200'></input>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Description'>Description</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <textarea style = 'font-family: Arial, sans-serif;' aria-multiline = 'true' id = 'Description' aria-required = 'false' aria-label = 'Description' name = 'Description'></textarea>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <div class = 'zcwf_row wfrm_fld_dpNn'>
+                                    <div class = 'zcwf_col_lab' style = 'font-size:12px; font-family: Arial;'>
+                                        <label for = 'Lead_Source'>Lead Source</label>
+                                    </div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <select class = 'zcwf_col_fld_slt' role = 'combobox' aria-expanded = 'false' aria-haspopup = 'listbox' id = 'Lead_Source' onChange = 'addAriaSelected1436762000000660001()' aria-required = 'false' aria-label = 'Lead Source' name = 'Lead Source'>
+                                            <option value = '-None-'>-None-</option>
+                                            <option selected value = 'Website'>Website</option>
+                                            <option value = 'Google Ads'>Google Ads</option>
+                                            <option value = 'Instagram'>Instagram</option>
+                                            <option value = 'Facebook'>Facebook</option>
+                                            <option value = 'WhatsApp'>WhatsApp</option>
+                                            <option value = 'Phone Call'>Phone Call</option>
+                                            <option value = 'Referral'>Referral</option>
+                                            <option value = 'Event'>Event</option>
+                                            <option value = 'Walk-in'>Walk-in</option>
+                                        </select>
+                                        <div class = 'zcwf_col_help'></div>
+                                    </div>
+                                </div>
+                                <input type = 'text' type = 'hidden' style = 'display: none;' name = 'aG9uZXlwb3Q' value = ''/>
+                                <div class = 'zcwf_row'>
+                                    <div class = 'zcwf_col_lab'></div>
+                                    <div class = 'zcwf_col_fld'>
+                                        <input type = 'submit' id = 'formsubmit' role = 'button' class = 'formsubmit zcwf_button' value = 'Submit' aria-label = 'Submit' title = 'Submit'>
+                                        <input type = 'reset' class = 'zcwf_button' role = 'button' name = 'reset' value = 'Reset' aria-label = 'Reset' title = 'Reset'>
+                                    </div>
+                                </div>
+                                <script>
+                                    function addAriaSelected1436762000000660001(){
+                                        var optionElem = event.target;
+                                        var previousSelectedOption = optionElem.querySelector('[aria-selected=true]');
+                                        if (previousSelectedOption) {
+                                            previousSelectedOption.removeAttribute('aria-selected');
+                                        }
+                                        optionElem.querySelectorAll('option') [optionElem.selectedIndex] .ariaSelected = 'true';
+                                    }
+                                    function validateEmail1436762000000660001(){
+                                        var form = document.forms['WebToLeads1436762000000660001'];
+                                        var emailFld = form.querySelectorAll('[ftype=email]');
+                                        var i;
+                                        for(i = 0; i < emailFld.length; i++ ) {
+                                            var emailVal = emailFld[i].value;
+                                            if ((emailVal.replace (/^\s+|\s+$/g,'') ) .length != 0) {
+                                                var atpos = emailVal.indexOf('@');
+                                                var dotpos = emailVal.lastIndexOf('.');
+                                                if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+                                                    alert('Please enter a valid email address. ');
+                                                    emailFld[i].focus();
+                                                    return false;
+                                                }
+                                            }
+                                        }
+                                        return true;
+                                    }
+                                    function checkMandatory1436762000000660001(isAjax){
+                                        var mndFileds = new Array('Last Name', 'Mobile');
+                                        var fldLangVal = new Array('Last Name', 'Mobile');
+                                        for (i = 0; i < mndFileds.length; i++ ) {
+                                            var fieldObj = document.forms['WebToLeads1436762000000660001'] [mndFileds[i]];
+                                            if (fieldObj) {
+                                                if(((fieldObj.value) .replace (/^\s+|\s+$/g,'') ) .length == 0) {
+                                                    if (fieldObj.type == 'file') {
+                                                        alert('Please select a file to upload.');
+                                                        fieldObj.focus();
+                                                        return false;
+                                                    }
+                                                    alert(fldLangVal[i] + ' cannot be empty.');
+                                                    fieldObj.focus();
+                                                    return false;
+                                                } else if (fieldObj.nodeName == 'SELECT') {
+                                                    if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                                        alert(fldLangVal[i] + ' cannot be none.');
+                                                        fieldObj.focus();
+                                                        return false;
+                                                    }
+                                                } else if (fieldObj.type == 'checkbox') {
+                                                    if (fieldObj.checked == false) {
+                                                        alert('Please accept  ' + fldLangVal[i]);
+                                                        fieldObj.focus();
+                                                        return false;
+                                                    }
+                                                }
+                                                try{
+                                                    if (fieldObj.name == 'Last Name') {
+                                                        name = fieldObj.value;
+                                                    }
+                                                } catch (e){}
+                                            }
+                                        }
+                                        if ( !validateEmail1436762000000660001 () ) {
+                                            return false;
+                                        }
+                                        var urlparams = new URLSearchParams(window.location.search);
+                                        if (urlparams.has ('service') && (urlparams.get ('service') === 'smarturl') ) {
+                                            var webform = document.getElementById('webform1436762000000660001');
+                                            var service = urlparams.get('service');
+                                            var smarturlfield = document.createElement('input');
+                                            smarturlfield.setAttribute('type', 'hidden');
+                                            smarturlfield.setAttribute('value', service);
+                                            smarturlfield.setAttribute('name', 'service');
+                                            webform.appendChild(smarturlfield);
+                                        }
+                                        document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+                                    }
+                                    _wFa_ajax_will_be_replaced = false;
+                                    if (typeof _wfa_fstprtcken == 'undefined') {
+                                        _wfa_fstprtcken = {};
+                                    }
+                                    _wfa_fstprtcken[1436762000000660001] = true;
+                                    function tooltipShow1436762000000660001(el){
+                                        var tooltip = el.nextElementSibling;
+                                        var tooltipDisplay = tooltip.style.display;
+                                        if (tooltipDisplay == 'none') {
+                                            var allTooltip = document.getElementsByClassName('zcwf_tooltip_over');
+                                            for (i = 0; i < allTooltip.length; i++ ) {
+                                                allTooltip[i].style.display = 'none';
+                                            }
+                                            tooltip.style.display = 'block';
+                                        } else {
+                                            tooltip.style.display = 'none';
+                                        }
+                                    }
+                                </script>
+                                <script id = 'wf_anal' src = 'https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=26d3cf664b0df53f70daa1569cbf39c8bcc7eb8f6ab547f8267e30b4a7675d85b1e7dcfee8dd9a4ab62f30c6c6415a17gid27cc2b1868fd21db9bcabb12864a949b1168a0d41e2abe3fbe18d27361f6a126gid4607eead88b8a9db885cad0bae2194de5057bc01650e40865f65267141a13d6dgidb42eb4c0684b2c0e7fc6aec77804b4bf8fe60d5ab4d78e5d510bb059551b97ce&tw=a24948723d8e615798b39945163e40b00a0a1187f7883d0c3854e692c5ee7273&version=v2'></script>
+                            </form>
+                        </div>
 
-                            <!-- Service / Requirement -->
-                            <div>
-                                <label for="service" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Service / Requirement *</label>
-                                <select id="service" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-0 text-xs text-primary bg-white">
-                                    <option value="" disabled selected>Select Requirement</option>
-                                    <option value="lab-setup">Institutional Robotics Lab Setup</option>
-                                    <option value="school-program">School STEM / Robotics Curriculum</option>
-                                    <option value="college-admissions">College Admissions Guidance</option>
-                                    <option value="career-counselling">Career Counselling & Workshops</option>
-                                    <option value="other">General Enquiry</option>
-                                </select>
-                            </div>
-
-                            <!-- Message -->
-                            <div>
-                                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Message *</label>
-                                <textarea id="message" rows="4" required placeholder="Please describe your institution size, location, and specific requirements..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-0 text-xs text-primary placeholder-gray-400 bg-white"></textarea>
-                            </div>
-
-                            <!-- Send Enquiry Button -->
-                            <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest hover:bg-secondary transition-all shadow-md flex items-center justify-center gap-2">
-                                <span>Send Enquiry</span>
-                                <span class="material-symbols-outlined text-base">send</span>
-                            </button>
-                        </form>
                     </div>
                 </div>
 
@@ -392,26 +650,25 @@
     </section>
 
     <!-- GOOGLE MAPS SECTION -->
-    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-surface border-b border-gray-200">
+    <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50/60 border-b border-gray-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-secondary text-xs uppercase font-extrabold tracking-widest block mb-2">Find Us</span>
-                <h2 class="font-tech text-2xl sm:text-4xl font-bold text-primary mb-3">Our Location</h2>
-                <p class="text-xs sm:text-sm text-gray-600">Visit our headquarters and experience our robotics lab setup solutions in person.</p>
+                <span class="text-brand-btn text-xs uppercase font-extrabold tracking-widest block mb-2">Find Us</span>
+                <h2 class="font-tech text-2xl sm:text-4xl font-extrabold text-brand-dark mb-3">Our Location</h2>
+                <p class="text-xs sm:text-sm text-slate-600">Visit our headquarters and experience our robotics lab setup solutions in person.</p>
             </div>
 
             <!-- Google Maps Container -->
-            <div class="bg-white p-3 rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
-                <div class="w-full h-80 sm:h-96 rounded-2xl bg-gray-100 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
-                    <!-- Placeholder Map Display -->
-                    <div class="absolute inset-0 bg-gray-200/60 minimal-grid"></div>
+            <div class="bg-white p-3 rounded-3xl border border-gray-200 card-depth overflow-hidden">
+                <div class="w-full h-80 sm:h-96 rounded-2xl bg-slate-100 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-slate-200/50 minimal-grid"></div>
                     <div class="relative z-10 max-w-md space-y-3">
-                        <div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center mx-auto shadow-md">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-dark text-brand-green flex items-center justify-center mx-auto shadow-md">
                             <span class="material-symbols-outlined text-2xl">map</span>
                         </div>
-                        <h3 class="font-tech text-base font-bold text-primary">Google Maps Location</h3>
-                        <p class="text-xs text-gray-600 font-mono">[Embed/link to the client's actual location once supplied.]</p>
-                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-gray-300 text-xs font-bold text-primary hover:border-primary transition-all shadow-sm">
+                        <h3 class="font-tech text-base font-bold text-brand-dark">UniFirst Robotics Innovation Hub</h3>
+                        <p class="text-xs text-slate-600">Outer Ring Rd, Marathahalli, Bengaluru, Karnataka 560037</p>
+                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-btn text-white text-xs font-bold hover:bg-red-600 transition-all shadow-sm">
                             <span>Open in Google Maps</span>
                             <span class="material-symbols-outlined text-sm">open_in_new</span>
                         </a>
@@ -422,21 +679,21 @@
     </section>
 
     <!-- FINAL CTA SECTION -->
-    <section class="py-16 sm:py-20 bg-primary text-white relative overflow-hidden dark-grid-pattern">
+    <section class="py-16 sm:py-20 bg-brand-dark text-white relative overflow-hidden dark-grid-pattern">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-6">
             
-            <span class="text-xs font-mono uppercase tracking-widest text-gray-400 font-bold block">Quick Support</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-brand-green font-bold block">Quick Support</span>
             
-            <h2 class="font-tech text-3xl sm:text-4xl lg:text-5xl font-bold">
+            <h2 class="font-tech text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
                 Have a Question About Our Programs?
             </h2>
             
-            <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
                 Send us an enquiry today and our educational advisors will guide you through the best curriculum and lab options for your institution.
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#enquiry-form" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all shadow-lg">
+                <a href="#enquiry-form" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-btn text-white font-bold px-8 py-4 rounded-lg text-xs uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg">
                     <span>Send Us an Enquiry</span>
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
@@ -444,19 +701,83 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-primary text-gray-400 py-8 sm:py-10 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded bg-white text-primary flex items-center justify-center font-bold shrink-0">
-                    <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+    <!-- FOOTER WITH PROPER BRAND SOCIAL MEDIA ICONS -->
+    <footer class="bg-brand-dark text-slate-400 pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+            
+            <!-- Company Info & Logo -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white tracking-tight">UniFirst Robotics</span>
                 </div>
-                <span class="font-tech text-sm font-bold tracking-wider text-white">ROBOTICS.EDU</span>
+                <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                    Empowering the next generation of engineers and innovators through world-class STEM curriculum, robotics hardware, and expert academic mentorship.
+                </p>
+                
+                <!-- Social Media Links -->
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://www.facebook.com/unifirstrobotics" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/ufrblr" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/unifirst-robotics/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCVcR1qDq-Xp-SfqozXcU9Gw" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/unifirst_robotics/?utm_medium=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
             </div>
 
-            <p class="text-xs text-gray-500 text-center sm:text-right">
-                © 2026 Educational Robotics Company. All Rights Reserved. Institutional B2B Division.
-            </p>
+            <!-- Quick Links: Programs -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Programs</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="schools.html" class="hover:text-white transition-colors">School STEM Labs</a></li>
+                    <li><a href="schools.html#bootcamps" class="hover:text-white transition-colors">College Bootcamps</a></li>
+                    <li><a href="schools.html#competitions" class="hover:text-white transition-colors">Robotics Competitions</a></li>
+                    <li><a href="schools.html#faculty" class="hover:text-white transition-colors">Faculty Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Admissions & Career -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Advisory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">UG Admissions</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">PG Overseas</a></li>
+                    <li><a href="careerCounselling.html" class="hover:text-white transition-colors">Career Counselling</a></li>
+                    <li><a href="careerCounselling.html#professionals" class="hover:text-white transition-colors">Working Professionals</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Company -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition-colors">Gallery</a></li>
+                    <li><a href="blogs.html" class="hover:text-white transition-colors">Blogs & News</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Support</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>© 2026 UniFirst Robotics. All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+            </div>
         </div>
     </footer>
 

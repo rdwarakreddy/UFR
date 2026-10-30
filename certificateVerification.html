@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Check a certificate's status using the official Voati Certificates verification service." />
+    <title>Certificate Verification | UniFirst Robotics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Tailwind Theme Colors (same as Home page) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B132B",
+                        "brand-bg": "#FFFFFF",
+                        "brand-green": "#52D68A",
+                        "brand-coral": "#FA9D8E",
+                        "brand-btn": "#FF4D30",
+                        "brand-text": "#111827",
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .minimal-grid {
+            background-size: 32px 32px;
+            background-image:
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
+        }
+
+        .hero-grid {
+            background-size: 32px 32px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 35px -8px rgba(11, 19, 43, 0.18), 0 8px 12px -6px rgba(11, 19, 43, 0.1);
+        }
+
+        /* ---------- Verification widget ---------- */
+        :focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+        [hidden] { display: none !important; }
+
+        #certificate-id {
+            font-size: 16px; /* avoids zoom on iOS */
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            letter-spacing: .02em;
+        }
+        #certificate-id::placeholder { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0; }
+
+        #result { margin-top: 24px; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; background: #f8fafc; display: none; }
+        #result.show { display: block; }
+        #result.success { border-color: #86efac; background: #ecfdf5; }
+        #result.danger  { border-color: #fca5a5; background: #fef2f2; }
+        #result.notice  { border-color: #fcd34d; background: #fffbeb; }
+        .result-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; margin: 0 0 6px; color: #0B132B; }
+        #result.success .result-title { color: #14532d; }
+        #result.danger  .result-title { color: #7f1d1d; }
+        #result.notice  .result-title { color: #78350f; }
+        .result-message { margin: 0; color: #334155; font-size: .9rem; }
+
+        dl#certificate-details {
+            display: grid; grid-template-columns: minmax(115px, 1fr) 2fr; gap: 9px 18px;
+            padding-top: 15px; margin-top: 17px; border-top: 1px solid #cbd5e1; font-size: .92rem;
+        }
+        dl#certificate-details dt { color: #475569; }
+        dl#certificate-details dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; color: #0B132B; }
+
+        .official {
+            display: inline-flex; align-items: center; text-decoration: none; background: #0B132B; color: #fff;
+            border-radius: 8px; padding: 10px 16px; margin-top: 16px; font-weight: 700; font-size: .85rem; transition: background .2s;
+        }
+        .official:hover { background: #1e293b; }
+
+        .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; animation: spin .8s linear infinite; display: inline-block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2.5s; } }
+
+        @media (max-width: 540px) {
+            dl#certificate-details { grid-template-columns: 1fr; gap: 2px; }
+            dl#certificate-details dd { margin-bottom: 11px; }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
+
+    <!-- GLOBAL NAVBAR (same as Home page) -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+
+            <!-- Company Logo & Branding -->
+            <a href="home.html" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                    <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold text-slate-300">
+                <a href="home.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="schools.html" class="hover:text-white transition-colors py-2">Schools</a>
+
+                <!-- Admissions Dropdown -->
+                <div class="relative group py-4">
+                    <a href="admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Admissions
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
+                    </div>
+                </div>
+
+                <!-- Career Counselling Dropdown -->
+                <div class="relative group py-4">
+                    <a href="careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Career Counselling
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
+                    </div>
+                </div>
+
+                <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
+                <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+                <a href="certificateVerification.html" class="text-white font-bold py-2 border-b-2 border-brand-green" aria-current="page">Certificate Verification</a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-3">
+                <a href="home.html#contact" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
+                    <span class="material-symbols-outlined text-2xl block">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img src="./Images/roboarm.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
+                </div>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5" aria-label="Close menu">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+                <a href="certificateVerification.html" class="text-brand-green py-1" aria-current="page">CERTIFICATE VERIFICATION</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 mt-8">
+            <a href="home.html#contact" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+                Enquire Now
+            </a>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         HERO
+    =========================================== -->
+    <header class="relative pt-36 sm:pt-44 pb-32 sm:pb-40 border-b border-gray-200 overflow-hidden bg-brand-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="./Images/roboarm.jpg" alt="" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/70"></div>
+            <div class="absolute inset-0 hero-grid"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl text-left">
+                <div class="inline-block bg-brand-green/20 border border-brand-green/40 text-brand-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-sm backdrop-blur-md">
+                    Certificate Verification
+                </div>
+
+                <h1 class="font-tech text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-md">
+                    Every achievement deserves to be verified.
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+                    Enter a certificate ID to check whether it is valid and was issued by UniFirst Robotics. Students, parents and employers can confirm authenticity in seconds.
+                </p>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ==========================================
+         VERIFICATION CARD
+    =========================================== -->
+    <main class="relative px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 minimal-grid bg-white">
+        <section class="relative z-10 max-w-3xl mx-auto -mt-20 bg-white rounded-2xl border border-gray-200 card-shadow p-6 sm:p-10" aria-labelledby="verify-title">
+            <h2 id="verify-title" class="font-tech text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight mb-1">Verify a certificate</h2>
+            <p class="text-sm text-slate-600 mb-6">Find the certificate ID on the certificate or below its QR code.</p>
+
+            <form id="verify-form" novalidate>
+                <label for="certificate-id" class="block text-sm font-bold text-brand-dark mb-2">Certificate ID</label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input id="certificate-id" name="certificateId" type="text" maxlength="80"
+                           pattern="[A-Za-z0-9._-]+" autocomplete="off" spellcheck="false" autocapitalize="characters"
+                           placeholder="Enter your Certificate ID" required aria-describedby="field-hint"
+                           class="flex-1 min-w-0 bg-slate-50 border border-gray-300 rounded-lg px-4 py-3.5 text-brand-dark focus:outline-none focus:border-brand-dark focus:bg-white">
+                    <button type="submit" id="verify-button"
+                            class="bg-brand-btn text-white font-bold px-7 py-3.5 rounded-lg text-xs uppercase tracking-wider hover:bg-red-600 transition-all shadow-md disabled:opacity-60 disabled:cursor-wait sm:w-auto w-full">
+                        Verify certificate
+                    </button>
+                </div>
+                <p class="mt-3 text-xs text-slate-500" id="field-hint">Letters, numbers, hyphens, underscores and periods only. Up to 80 characters. IDs are not case-sensitive.</p>
+            </form>
+
+            <div id="result" role="status" aria-live="polite" aria-atomic="true">
+                <p class="result-title" id="result-title"></p>
+                <p class="result-message" id="result-message"></p>
+                <dl id="certificate-details" hidden></dl>
+                <a id="official-link" class="official" href="#" rel="noopener noreferrer" target="_blank" hidden>View official verification record ↗</a>
+            </div>
+        </section>
+
+        <p class="max-w-3xl mx-auto mt-6 text-xs sm:text-sm text-slate-500 text-center px-2">
+            Only certificates from UniFirst Robotics are accepted on this page. Verification checks the live Voati record, including revocation status.
+        </p>
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER (same as Home page)
+    =========================================== -->
+    <footer class="bg-brand-dark text-slate-400 pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+
+            <!-- Company Info & Logo -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white tracking-tight">UniFirst Robotics</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                    Empowering the next generation of engineers and innovators through world-class STEM curriculum, robotics hardware, and expert academic mentorship.
+                </p>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://www.facebook.com/unifirstrobotics" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://x.com/ufrblr" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/unifirst-robotics/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCVcR1qDq-Xp-SfqozXcU9Gw" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/unifirst_robotics/?utm_medium=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-brand-green hover:text-brand-dark text-slate-300 flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links: Programs -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Programs</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="schools.html" class="hover:text-white transition-colors">School STEM Labs</a></li>
+                    <li><a href="schools.html#bootcamps" class="hover:text-white transition-colors">College Bootcamps</a></li>
+                    <li><a href="schools.html#competitions" class="hover:text-white transition-colors">Robotics Competitions</a></li>
+                    <li><a href="schools.html#faculty" class="hover:text-white transition-colors">Faculty Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Admissions & Career -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Advisory</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">UG Admissions</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">PG Overseas</a></li>
+                    <li><a href="careerCounselling.html" class="hover:text-white transition-colors">Career Counselling</a></li>
+                    <li><a href="careerCounselling.html#professionals" class="hover:text-white transition-colors">Working Professionals</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links: Company -->
+            <div class="space-y-3">
+                <h4 class="font-tech text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition-colors">Gallery</a></li>
+                    <li><a href="blogs.html" class="hover:text-white transition-colors">Blogs & News</a></li>
+                    <li><a href="certificateVerification.html" class="hover:text-white transition-colors">Certificate Verification</a></li>
+                    <li><a href="home.html#contact" class="hover:text-white transition-colors">Contact Support</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>© 2026 UniFirst Robotics. All Rights Reserved. Certificate verification powered by Voati Certificates.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==========================================
+         VERIFICATION LOGIC (Voati Verification API v1 - no API key needed)
+    =========================================== -->
+    <script>
+        const form = document.getElementById('verify-form');
+        const idInput = document.getElementById('certificate-id');
+        const submitButton = document.getElementById('verify-button');
+        const result = document.getElementById('result');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+        const details = document.getElementById('certificate-details');
+        const officialLink = document.getElementById('official-link');
+
+        // CONFIGURE: use the exact issuer name shown by the Voati public API.
+        // An organization may use multiple issuer display names across events,
+        // e.g. ['UniFirst Robotics', 'UniFirst Robotics Pvt Ltd'].
+        // Comparison ignores upper/lower case and extra spaces.
+        const ALLOWED_ISSUERS = ['UniFirst Robotics'];
+
+        // Optional: enter exact event names to restrict further, or leave []
+        // to accept all events from your configured issuer(s).
+        const ALLOWED_EVENTS = [];
+
+        const norm = (s) => String(s).trim().replace(/\s+/g, ' ').toLowerCase();
+
+        function isFromOurOrganization(certificate) {
+            if (!certificate || typeof certificate.issuer !== 'string') return false;
+            const issuer = norm(certificate.issuer);
+            return ALLOWED_ISSUERS.some((name) => norm(name) === issuer) &&
+                (ALLOWED_EVENTS.length === 0 || ALLOWED_EVENTS.includes(certificate.event));
+        }
+
+        function showResult(type, title, message, certificate = null, extraLink = null) {
+            result.className = `show ${type}`;
+            resultTitle.textContent = title;
+            resultMessage.textContent = message;
+            details.replaceChildren();
+            details.hidden = true;
+            officialLink.hidden = true;
+            officialLink.removeAttribute('href');
+            officialLink.textContent = 'View official verification record ↗';
+
+            if (certificate) {
+                const fields = [
+                    ['Recipient', certificate.recipient],
+                    ['Award', certificate.award],
+                    ['Event', certificate.event],
+                    ['Issuer', certificate.issuer],
+                    ['Certificate ID', certificate.id],
+                    ['Event date', certificate.eventDate],
+                ];
+                for (const [label, value] of fields) {
+                    if (value == null || value === '') continue;
+                    const dt = document.createElement('dt');
+                    const dd = document.createElement('dd');
+                    dt.textContent = label;
+                    dd.textContent = value;
+                    details.append(dt, dd);
+                }
+                details.hidden = !details.children.length;
+
+                // Only show links to Voati's official certificate site.
+                if (typeof certificate.verifyUrl === 'string') {
+                    try {
+                        const target = new URL(certificate.verifyUrl);
+                        if (target.protocol === 'https:' && target.hostname === 'certificates.voati.org') {
+                            officialLink.href = target.href;
+                            officialLink.hidden = false;
+                        }
+                    } catch { /* Ignore malformed links. */ }
+                }
+            }
+
+            // Optional fixed link (used for "not found" so older records can be searched on Voati's own page).
+            if (extraLink) {
+                officialLink.href = extraLink.href;
+                officialLink.textContent = extraLink.text;
+                officialLink.hidden = false;
+            }
+        }
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (submitButton.disabled) return;            // prevent duplicate submissions
+            const id = idInput.value.trim();
+            if (!id) {
+                showResult('notice', 'Enter a certificate ID', 'Please type the certificate ID before verifying.');
+                idInput.focus();
+                return;
+            }
+            if (!/^[A-Za-z0-9._-]{1,80}$/.test(id)) {
+                showResult('notice', 'Check the certificate ID', 'Enter an ID of up to 80 allowed characters (letters, numbers, - _ .).');
+                idInput.focus();
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner" aria-hidden="true"></span> Checking…';
+            showResult('', 'Verifying certificate…', 'Requesting the current verification status.');
+
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 10000);
+            try {
+                const endpoint = `https://certificates.voati.org/verify/v1/certificates/${encodeURIComponent(id)}`;
+                const response = await fetch(endpoint, { signal: controller.signal, headers: { Accept: 'application/json' }, cache: 'no-store' });
+
+                if (response.status === 404) {
+                    showResult('notice', 'Certificate not found',
+                        'No certificate matches this ID. Check for typos (for example the letter O and the number 0) and confirm the ID with the issuer. Older certificates may be held in Voati’s legacy register, which you can search on the official Voati page.',
+                        null,
+                        { href: `https://certificates.voati.org/verify?id=${encodeURIComponent(id)}`, text: 'Search on official Voati page ↗' });
+                    return;
+                }
+                if (response.status === 429) {
+                    const secs = parseInt(response.headers.get('Retry-After'), 10);
+                    const wait = Number.isFinite(secs) && secs > 0
+                        ? ` Please wait about ${secs} second${secs === 1 ? '' : 's'} and try again.`
+                        : ' Please try again in a minute.';
+                    showResult('notice', 'Too many checks', 'The service rate limit was reached.' + wait);
+                    return;
+                }
+                if (response.status === 400) {
+                    showResult('notice', 'Invalid certificate ID', 'Check the ID format and try again.');
+                    return;
+                }
+                if (!response.ok) throw new Error(`Verification HTTP ${response.status}`);
+
+                const data = await response.json();
+                if (!data || typeof data !== 'object' || typeof data.valid !== 'boolean') {
+                    showResult('notice', 'Unable to verify', 'We received an unexpected response. Please try again later.');
+                    return;
+                }
+
+                // A valid Voati certificate from a DIFFERENT organization is NOT
+                // accepted here. Fail closed when the issuer field is missing.
+                if (!isFromOurOrganization(data.certificate)) {
+                    showResult('danger', 'Not accepted',
+                        'This certificate cannot be verified as issued by UniFirst Robotics.');
+                    return;
+                }
+
+                // Revoked certificates from our organization still show as revoked.
+                // HTTP 200 alone does NOT mean a certificate is valid.
+                if (data.valid === true) {
+                    showResult('success', '✓ Certificate Is Valid',
+                        'This certificate is valid and was issued by UniFirst Robotics.', data.certificate);
+                } else if (data.status === 'revoked') {
+                    showResult('danger', 'Certificate revoked',
+                        'This certificate was issued by UniFirst Robotics but is no longer valid.', data.certificate);
+                } else {
+                    showResult('notice', 'Certificate not valid',
+                        'This certificate is not currently valid.');
+                }
+            } catch (error) {
+                const message = error.name === 'AbortError'
+                    ? 'The verification request timed out. Please try again.'
+                    : 'Verification is temporarily unavailable. Please try again later.';
+                showResult('notice', 'Unable to verify', message);
+            } finally {
+                clearTimeout(timeout);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Verify certificate';
+            }
+        });
+
+        // Optional deep link: certificateVerification.html?id=ABC-123
+        const queryId = new URLSearchParams(location.search).get('id');
+        if (queryId && /^[A-Za-z0-9._-]{1,80}$/.test(queryId.trim())) {
+            idInput.value = queryId.trim();
+            form.requestSubmit();
+        }
+    </script>
+</body>
+</html>

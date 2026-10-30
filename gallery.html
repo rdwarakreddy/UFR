@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
-    <!-- Tailwind Config matching home.html / schools.html color palette -->
+    <!-- Tailwind Config matching color palette -->
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
@@ -112,7 +112,7 @@
             <!-- Company Logo & Branding -->
             <a href="home.html" class="flex items-center gap-2.5 group">
                 <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
-                    <img src="../Images/roboarm.jpg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <div class="flex flex-col">
                     <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
@@ -158,11 +158,13 @@
                 <a href="gallery.html" class="nav-link-active py-2">Gallery</a>
                 <a href="blogs.html" class="hover:text-white transition-colors py-2">Blogs</a>
                 <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+                <a href="certificateVerification.html" class="hover:text-white transition-colors py-2">Certificate Verification</a>
+
             </div>
 
             <!-- Header Action Button -->
             <div class="flex items-center gap-3">
-                <a href="home.html#contact" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                <a href="contact.html" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
                     <span>Enquire Now</span>
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
@@ -179,7 +181,7 @@
             <div class="flex justify-between items-center mb-8">
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
-                        <img src="../Images/roboarm.jpg" alt="Logo" class="w-full h-full object-cover">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="Logo" class="w-full h-full object-cover">
                     </div>
                     <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
                 </div>
@@ -196,11 +198,14 @@
                 <a href="gallery.html" class="text-brand-green py-1">GALLERY</a>
                 <a href="blogs.html" class="hover:text-white py-1">BLOGS</a>
                 <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+                <a href="certificateVerification.html" class="hover:text-white py-1">Certificate Verification</a>
+
+
             </nav>
         </div>
 
         <div class="pt-6 border-t border-slate-800 mt-8">
-            <a href="home.html#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+            <a href="contact.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
                 Enquire Now
             </a>
         </div>
@@ -219,81 +224,166 @@
             </h1>
 
             <p class="text-sm sm:text-base lg:text-lg text-slate-700 font-normal leading-relaxed max-w-2xl mx-auto mb-10">
-                A glimpse into our state-of-the-art institutional robotics labs, student prototyping sessions, and national competition builds.
+                A glimpse into our state-of-the-art institutional robotics labs, student prototyping sessions, and interactive STEM learning sessions.
             </p>
 
             <!-- Category Filter Buttons -->
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="gallery-filters">
-                <button onclick="filterGallery('all')" class="filter-btn active bg-brand-dark text-white border border-brand-dark px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
+                <button onclick="filterGallery('all', event)" class="filter-btn active bg-brand-dark text-white border border-brand-dark hover:bg-slate-800 hover:text-white px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
                     All
                 </button>
-                <button onclick="filterGallery('labs')" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Labs
+                <button onclick="filterGallery('students', event)" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                    Students & Kids
                 </button>
-                <button onclick="filterGallery('students')" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Students
+                <button onclick="filterGallery('schools', event)" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                    School Visits
                 </button>
-                <button onclick="filterGallery('robots')" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Robots
-                </button>
-                <button onclick="filterGallery('events')" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Events
+                <button onclick="filterGallery('sessions', event)" class="filter-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                    Sessions & Training
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MASONRY GALLERY GRID SECTION -->
+    <!-- GALLERY GRID SECTION (All 17 Local Images) -->
     <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div class="max-w-7xl mx-auto">
             
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6" id="gallery-grid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
                 
-                <!-- Item 1 -->
-                <div class="gallery-item md:col-span-7 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72 sm:h-80" data-category="labs">
-                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80" alt="Robotics Lab Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 1. children.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/children.jpg" alt="Children Learning Robotics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Institutional Setup</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Young Innovators</span>
                     </div>
                 </div>
 
-                <!-- Item 2 -->
-                <div class="gallery-item md:col-span-5 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72 sm:h-80 md:h-auto" data-category="students">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80" alt="Students learning coding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 2. discuss.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="sessions">
+                    <img src="./Images/Gallery/discuss.jpg" alt="Discussion Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Student Workshop</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Project Discussion</span>
                     </div>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="gallery-item md:col-span-7 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72 sm:h-80" data-category="robots">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="Autonomous Rover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 3. kids1.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/kids1.jpg" alt="Kids Workshop 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Competition Build</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">STEM Workshop</span>
                     </div>
                 </div>
 
-                <!-- Item 4 -->
-                <div class="gallery-item md:col-span-4 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-64 sm:h-72" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80" alt="STEM Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 4. kids2.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/kids2.jpg" alt="Kids Workshop 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Annual Exhibition</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Hands-on Learning</span>
                     </div>
                 </div>
 
-                <!-- Item 5 -->
-                <div class="gallery-item md:col-span-4 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-64 sm:h-72" data-category="labs">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Robotic Arm" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 5. kids3.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/kids3.jpg" alt="Kids Workshop 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Lab Infrastructure</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Creative Building</span>
                     </div>
                 </div>
 
-                <!-- Item 6 -->
-                <div class="gallery-item md:col-span-4 gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-64 sm:h-72" data-category="students">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Team Collaboration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <!-- 6. kids4.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/kids4.jpg" alt="Kids Workshop 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Student Teamwork</span>
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Robotics Activity</span>
+                    </div>
+                </div>
+
+                <!-- 7. kids5.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="students">
+                    <img src="./Images/Gallery/kids5.jpg" alt="Kids Workshop 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Future Engineers</span>
+                    </div>
+                </div>
+
+                <!-- 8. presenting.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="sessions">
+                    <img src="./Images/Gallery/presenting.jpg" alt="Presentation Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Project Presentation</span>
+                    </div>
+                </div>
+
+                <!-- 9. school1.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school1.jpg" alt="School Visit 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">School Program</span>
+                    </div>
+                </div>
+
+                <!-- 10. school2.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school2.jpg" alt="School Visit 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Institutional Visit</span>
+                    </div>
+                </div>
+
+                <!-- 11. school3.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school3.jpg" alt="School Visit 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Campus Interaction</span>
+                    </div>
+                </div>
+
+                <!-- 12. school4.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school4.jpg" alt="School Visit 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">STEM Lab Demo</span>
+                    </div>
+                </div>
+
+                <!-- 13. school5.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school5.jpg" alt="School Visit 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Student Engagement</span>
+                    </div>
+                </div>
+
+                <!-- 14. school6.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="schools">
+                    <img src="./Images/Gallery/school6.jpg" alt="School Visit 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">School Collaboration</span>
+                    </div>
+                </div>
+
+                <!-- 15. sir.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="sessions">
+                    <img src="./Images/Gallery/sir.jpg" alt="Expert Guidance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Expert Mentorship</span>
+                    </div>
+                </div>
+
+                <!-- 16. sit.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="sessions">
+                    <img src="./Images/Gallery/sit.jpg" alt="Interactive Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Interactive Class</span>
+                    </div>
+                </div>
+
+                <!-- 17. sitting.jpg -->
+                <div class="gallery-item gallery-card bg-white rounded-2xl border border-gray-200 overflow-hidden relative group h-72" data-category="sessions">
+                    <img src="./Images/Gallery/sitting.jpg" alt="Group Training Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <span class="text-xs font-extrabold text-white uppercase tracking-widest drop-shadow-sm">Workshop Training</span>
                     </div>
                 </div>
 
@@ -321,7 +411,7 @@
         </div>
     </section>
 
-    <!-- FOOTER WITH EXACT SOCIAL MEDIA LINKS & SECTIONS -->
+    <!-- FOOTER WITH SOCIAL MEDIA LINKS -->
     <footer class="bg-brand-dark text-slate-400 pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
             
@@ -329,7 +419,7 @@
             <div class="lg:col-span-2 space-y-4">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
-                        <img src="../Images/roboarm.jpg" alt="UniFirst Logo" class="w-full h-full object-cover">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover">
                     </div>
                     <span class="font-tech text-base font-bold text-white tracking-tight">UniFirst Robotics</span>
                 </div>
@@ -402,22 +492,21 @@
 
     <!-- Interactive Gallery Filter Script -->
     <script>
-        function filterGallery(category) {
-            // Update active tab styling
+        function filterGallery(category, event) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-dark', 'text-white', 'border-brand-dark');
-                btn.classList.add('bg-white', 'text-slate-600', 'border-gray-300');
+                btn.classList.remove('active', 'bg-brand-dark', 'text-white', 'border-brand-dark', 'hover:bg-slate-800');
+                btn.classList.add('bg-white', 'text-slate-600', 'border-gray-300', 'hover:border-brand-dark', 'hover:bg-brand-dark', 'hover:text-white');
             });
 
-            event.target.classList.remove('bg-white', 'text-slate-600', 'border-gray-300');
-            event.target.classList.add('bg-brand-dark', 'text-white', 'border-brand-dark');
+            const target = event ? event.currentTarget : buttons[0];
+            target.classList.remove('bg-white', 'text-slate-600', 'border-gray-300', 'hover:border-brand-dark', 'hover:bg-brand-dark', 'hover:text-white');
+            target.classList.add('active', 'bg-brand-dark', 'text-white', 'border-brand-dark', 'hover:bg-slate-800', 'hover:text-white');
 
-            // Filter grid items
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
                 const itemCategory = item.getAttribute('data-category');
-                if (category === 'all' || itemCategory === category) {
+                if (category === 'all' || (itemCategory && itemCategory.includes(category))) {
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';

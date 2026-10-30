@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
-    <!-- Tailwind Config matching home.html / schools.html color palette -->
+    <!-- Tailwind Config matching color palette -->
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
@@ -110,10 +110,10 @@
     <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
             
-            <!-- Company Logo -->
+            <!-- Company Logo with Local Path -->
             <a href="home.html" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-brand-green shrink-0">
-                    <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                    <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <div class="flex flex-col">
                     <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
@@ -159,6 +159,8 @@
                 <a href="gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
                 <a href="blogs.html" class="nav-link-active py-2">Blogs</a>
                 <a href="about.html" class="hover:text-white transition-colors py-2">About Us</a>
+                <a href="certificateVerification.html" class="hover:text-white transition-colors py-2">Certificate Verification</a>
+
             </div>
 
             <!-- Header Action Button -->
@@ -178,9 +180,9 @@
     <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
         <div>
             <div class="flex justify-between items-center mb-8">
-                <a href="home.html" class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold">
-                        <span class="material-symbols-outlined">precision_manufacturing</span>
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="Logo" class="w-full h-full object-cover">
                     </div>
                     <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
                 </a>
@@ -190,18 +192,20 @@
             </div>
             
             <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
-                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="index.html" class="hover:text-white py-1">HOME</a>
                 <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
                 <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
                 <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
                 <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
                 <a href="blogs.html" class="text-brand-green py-1">BLOGS</a>
                 <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+                <a href="certificateVerification.html" class="hover:text-white py-1">Certificate Verification</a>
+
             </nav>
         </div>
 
         <div class="pt-6 border-t border-slate-800 mt-8">
-            <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+            <a href="contact.html" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
                 Enquire Now
             </a>
         </div>
@@ -231,34 +235,28 @@
             
             <!-- Blog Categories Filter -->
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-14" id="category-filters">
-                <button onclick="filterBlogs('all')" class="cat-btn active bg-brand-dark text-white border border-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                <button onclick="filterBlogs('all', event)" class="cat-btn active bg-brand-dark text-white border border-brand-dark hover:bg-slate-800 hover:text-white px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
                     All
                 </button>
-                <button onclick="filterBlogs('Robotics')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                <button onclick="filterBlogs('Robotics', event)" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
                     Robotics
                 </button>
-                <button onclick="filterBlogs('Education')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                <button onclick="filterBlogs('Education', event)" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
                     Education
                 </button>
-                <button onclick="filterBlogs('AI')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    AI
-                </button>
-                <button onclick="filterBlogs('Technology')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                <button onclick="filterBlogs('Technology', event)" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
                     Technology
                 </button>
-                <button onclick="filterBlogs('Career')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Career
-                </button>
-                <button onclick="filterBlogs('Innovation')" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:text-brand-dark px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
-                    Innovation
+                <button onclick="filterBlogs('Training', event)" class="cat-btn bg-white text-slate-600 border border-gray-300 hover:border-brand-dark hover:bg-brand-dark hover:text-white px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+                    Training
                 </button>
             </div>
 
-            <!-- FEATURED BLOG (Large featured article at top) -->
-            <div class="mb-12 sm:mb-16 blog-item" data-category="Robotics AI">
+            <!-- FEATURED BLOG (Blog 1: Empowering Educators: UniFirst Robotics Teacher Training Program at Soundarya School) -->
+            <div class="mb-12 sm:mb-16 blog-item" data-category="Education Training">
                 <div class="minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-sm">
                     <div class="lg:col-span-7 relative h-64 sm:h-80 lg:h-auto overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="Featured Blog Image" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-700">
+                        <img src="https://i.pinimg.com/736x/25/dd/4a/25dd4ab0d7a34c4c91753384e351bf51.jpg" alt="Teacher Training Program at Soundarya School" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-700">
                         <span class="absolute top-4 left-4 bg-brand-dark text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded">
                             Featured Post
                         </span>
@@ -266,19 +264,19 @@
                     <div class="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 text-xs text-slate-400 font-semibold mb-3">
-                                <span class="text-brand-dark uppercase font-extrabold tracking-wider">Robotics & AI</span>
+                                <span class="text-brand-dark uppercase font-extrabold tracking-wider">Education & Training</span>
                                 <span>•</span>
-                                <span>September 24, 2026</span>
+                                <span>July 27, 2026</span>
                             </div>
                             <h2 class="font-tech text-xl sm:text-2xl lg:text-3xl font-bold text-brand-dark leading-snug mb-4">
-                                The Evolution of Autonomous Systems in Modern Technical Education
+                                Empowering Educators: UniFirst Robotics Teacher Training Program at Soundarya School
                             </h2>
                             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                                Discover how integrated robotics labs and artificial intelligence modules are revolutionizing STEM learning outcomes for K-12 and collegiate institutions worldwide.
+                                Strengthening educator confidence through hands-on robotics workshops, practical electronics integration, and collaborative STEM teaching methodologies.
                             </p>
                         </div>
                         <div>
-                            <a href="#" class="inline-flex items-center gap-2 bg-brand-dark text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all">
+                            <a href="./Blogs/Empowering Educators. Inspiring the Future of STEM..html" class="inline-flex items-center gap-2 bg-brand-dark text-white px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all">
                                 <span>Read More</span>
                                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </a>
@@ -293,108 +291,81 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="blogs-grid">
                     
-                    <!-- Blog Card 1 -->
-                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Education">
+                    <!-- Blog Card 2 (Empowering Teachers Through Hands-on STEM Education at Takshasheela School) -->
+                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Education Training">
                         <div>
                             <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Hands-on learning" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
+                                <img src="./Images/Blog Images/Empowering Teachers Through Hands-on STEM Education/Image1.png" alt="Takshasheela School STEM Education" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
                                 <span class="absolute top-3 left-3 bg-white border border-gray-200 text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
                                     Education
                                 </span>
                             </div>
                             <div class="p-6">
-                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">September 18, 2026</span>
+                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">July 27, 2026</span>
                                 <h4 class="font-tech text-lg font-bold text-brand-dark mb-2.5 leading-snug">
-                                    Bridging the Gap Between Classroom Theory and Real-World Robotics
+                                    Empowering Teachers Through Hands-on STEM Education at Takshasheela School
                                 </h4>
                                 <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                                    Why physical hardware kits and practical experimentation are vital for building deep engineering intuition in early learners.
+                                    Equipping educators with classroom-ready technical skills, smart electronics mastery, and interactive robotics project experience.
                                 </p>
                             </div>
                         </div>
                         <div class="px-6 pb-6 pt-0">
-                            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
+                            <a href="./Blogs/Empowering Teachers Through Hands-on STEM Education.html" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
                                 <span>Read More</span>
                                 <span class="material-symbols-outlined text-sm">east</span>
                             </a>
                         </div>
                     </article>
 
-                    <!-- Blog Card 2 -->
-                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="AI">
+                    <!-- Blog Card 3 (Robotics Certification Courses in Bangalore) -->
+                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Robotics Training">
                         <div>
                             <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="AI Neural Networks" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
+                                <img src="https://i.pinimg.com/1200x/9f/a3/28/9fa328e82a7d9459dba88eb2aeb4f9ee.jpg" alt="Robotics Certification Courses in Bangalore" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
                                 <span class="absolute top-3 left-3 bg-white border border-gray-200 text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-                                    AI
+                                    Robotics
                                 </span>
                             </div>
                             <div class="p-6">
-                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">September 12, 2026</span>
+                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">January 28, 2026</span>
                                 <h4 class="font-tech text-lg font-bold text-brand-dark mb-2.5 leading-snug">
-                                    Integrating Edge AI into High School Science Curriculums
+                                    Robotics Certification Courses in Bangalore
                                 </h4>
                                 <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                                    How low-cost neural network microprocessors enable high school students to build computer vision applications easily.
+                                    Discover specialized hands-on robotics certification programs designed to build technical proficiency and career opportunities in Bangalore's tech hub.
                                 </p>
                             </div>
                         </div>
                         <div class="px-6 pb-6 pt-0">
-                            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
+                            <a href="./Blogs/Robotics Certification Courses.html" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
                                 <span>Read More</span>
                                 <span class="material-symbols-outlined text-sm">east</span>
                             </a>
                         </div>
                     </article>
 
-                    <!-- Blog Card 3 -->
-                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Career">
+                    <!-- Blog Card 4 (UniFirst Robotics – Empowering Future Innovators Through Robotics & Technology Education) -->
+                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Technology Innovation">
                         <div>
                             <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Engineering Team" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
+                                <img src="https://i.pinimg.com/236x/85/e6/c4/85e6c479a4205dfe4bab8d817ba62ee3.jpg" alt="Empowering Future Innovators Through Robotics & Technology" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
                                 <span class="absolute top-3 left-3 bg-white border border-gray-200 text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-                                    Career
+                                    Technology
                                 </span>
                             </div>
                             <div class="p-6">
-                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">August 29, 2026</span>
+                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">February 19, 2026</span>
                                 <h4 class="font-tech text-lg font-bold text-brand-dark mb-2.5 leading-snug">
-                                    Futureproofing Your Career: Essential Skills for Robotics Engineering
+                                    UniFirst Robotics – Empowering Future Innovators Through Robotics & Technology Education
                                 </h4>
                                 <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                                    Key competencies modern tech firms demand from graduates entering automation, mechatronics, and software fields.
+                                    Shaping the next generation of innovators with industry-focused robotics training, automation programs, and expert career mentorship.
                                 </p>
                             </div>
                         </div>
                         <div class="px-6 pb-6 pt-0">
-                            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
-                                <span>Read More</span>
-                                <span class="material-symbols-outlined text-sm">east</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Card 4 -->
-                    <article class="blog-item minimal-card bg-white rounded-2xl border border-gray-200 overflow-hidden flex flex-col justify-between" data-category="Innovation">
-                        <div>
-                            <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Robotic Arm" class="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500">
-                                <span class="absolute top-3 left-3 bg-white border border-gray-200 text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-                                    Innovation
-                                </span>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[11px] text-slate-400 font-semibold block mb-2">August 15, 2026</span>
-                                <h4 class="font-tech text-lg font-bold text-brand-dark mb-2.5 leading-snug">
-                                    The Rise of Collaborative Robots (Cobots) in Academic Labs
-                                </h4>
-                                <p class="text-slate-600 text-xs leading-relaxed mb-4">
-                                    Exploring how safe human-robot interaction tools are transforming university research and development facilities.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="px-6 pb-6 pt-0">
-                            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
+                            <a href="./Blogs/UniFirst robotics – Empowering Future Innovators Through Robotics.html" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-btn transition-colors">
                                 <span>Read More</span>
                                 <span class="material-symbols-outlined text-sm">east</span>
                             </a>
@@ -497,23 +468,25 @@
 
     <!-- Category Filter Script -->
     <script>
-        function filterBlogs(category) {
+        function filterBlogs(category, event) {
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-dark', 'text-white', 'border-brand-dark');
-                btn.classList.add('bg-white', 'text-slate-600', 'border-gray-300');
+                btn.classList.remove('active', 'bg-brand-dark', 'text-white', 'border-brand-dark', 'hover:bg-slate-800');
+                btn.classList.add('bg-white', 'text-slate-600', 'border-gray-300', 'hover:border-brand-dark', 'hover:bg-brand-dark', 'hover:text-white');
             });
 
-            event.target.classList.remove('bg-white', 'text-slate-600', 'border-gray-300');
-            event.target.classList.add('bg-brand-dark', 'text-white', 'border-brand-dark');
+            const target = event ? event.currentTarget : buttons[0];
+            target.classList.remove('bg-white', 'text-slate-600', 'border-gray-300', 'hover:border-brand-dark', 'hover:bg-brand-dark', 'hover:text-white');
+            target.classList.add('active', 'bg-brand-dark', 'text-white', 'border-brand-dark', 'hover:bg-slate-800', 'hover:text-white');
 
             const articles = document.querySelectorAll('.blog-item');
             articles.forEach(article => {
                 const articleCat = article.getAttribute('data-category');
-                if (category === 'all' || articleCat.includes(category)) {
-                    article.style.display = 'flex';
+                if (category === 'all' || (articleCat && articleCat.includes(category))) {
                     if (article.classList.contains('grid')) {
                         article.style.display = 'grid';
+                    } else {
+                        article.style.display = 'flex';
                     }
                 } else {
                     article.style.display = 'none';

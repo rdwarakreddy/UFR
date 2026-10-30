@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Empowering Educators: UniFirst Robotics Teacher Training Program at Soundarya School</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind Config matching color palette -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B132B",      /* Dark Navy Header / Banners */
+                        "brand-bg": "#FFFFFF",        /* Pure White Background */
+                        "brand-green": "#52D68A",     /* Emerald/Mint Green Accent */
+                        "brand-coral": "#FA9D8E",     /* Soft Salmon / Coral Cards */
+                        "brand-btn": "#FF4D30",       /* Vibrant Red-Orange Buttons */
+                        "brand-text": "#111827",      /* Deep charcoal text */
+                    },
+                    fontFamily: {
+                        'tech': ['Space Grotesk', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .minimal-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(11, 19, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(11, 19, 43, 0.02) 1px, transparent 1px);
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 19, 43, 0.95);
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-btn selection:text-white bg-white">
+
+    <!-- GLOBAL NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            
+            <a href="../index.html" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md">
+                    <img src="../Images/NaviBar&Footer/Logo.jpeg" alt="UniFirst Logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-tech text-base font-bold tracking-tight text-white leading-tight">UniFirst Robotics</span>
+                    <span class="text-[8px] uppercase tracking-widest text-slate-400 font-semibold leading-tight">STEM & Innovation Hub</span>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-7 font-sans text-xs font-semibold text-slate-300">
+                <a href="../index.html" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="../schools.html" class="hover:text-white transition-colors py-2">Schools</a>
+                
+                <div class="relative group py-4">
+                    <a href="../admissions.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Admissions
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-52 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">India</div>
+                        <a href="../admissions.html#ug-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Admissions</a>
+                        <a href="../admissions.html#pg-india" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Admissions</a>
+                        <div class="my-1 border-t border-slate-800"></div>
+                        <div class="px-3 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Overseas</div>
+                        <a href="../admissions.html#ug-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">UG Overseas</a>
+                        <a href="../admissions.html#pg-overseas" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">PG Overseas</a>
+                    </div>
+                </div>
+
+                <div class="relative group py-4">
+                    <a href="../careerCounselling.html" class="hover:text-white transition-colors flex items-center gap-1 focus:outline-none">
+                        Career Counselling
+                        <span class="material-symbols-outlined text-base text-slate-400 group-hover:text-white transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                    </a>
+                    <div class="dropdown-menu absolute top-full left-0 w-48 bg-brand-dark border border-slate-800 rounded-lg shadow-xl py-2 px-1 text-xs">
+                        <a href="../careerCounselling.html#students" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Students</a>
+                        <a href="../careerCounselling.html#graduates" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Graduates</a>
+                        <a href="../careerCounselling.html#working-professionals" class="block px-3 py-1.5 rounded text-slate-300 hover:bg-slate-800 hover:text-white">Working Professionals</a>
+                    </div>
+                </div>
+
+                <a href="../gallery.html" class="hover:text-white transition-colors py-2">Gallery</a>
+                <a href="../blogs.html" class="text-white font-bold py-2 border-b-2 border-brand-green">Blogs</a>
+                <a href="../about.html" class="hover:text-white transition-colors py-2">About Us</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="../contact.html" class="hidden md:inline-flex bg-brand-btn text-white px-5 py-2 rounded-md text-xs font-bold hover:bg-red-600 transition-all duration-200 items-center gap-1.5 shadow-md">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')" class="lg:hidden text-white focus:outline-none p-1.5" aria-label="Open menu">
+                    <span class="material-symbols-outlined text-2xl block">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-dark z-[60] translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 text-white lg:hidden overflow-y-auto">
+        <div>
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img src="./Images/NaviBar&Footer/Logo.jpeg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="font-tech text-base font-bold text-white">UniFirst Robotics</span>
+                </div>
+                <button onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="text-slate-400 hover:text-white p-1.5">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-4 text-sm font-tech tracking-wider uppercase font-bold text-slate-300">
+                <a href="home.html" class="hover:text-white py-1">HOME</a>
+                <a href="schools.html" class="hover:text-white py-1">SCHOOLS</a>
+                <a href="admissions.html" class="hover:text-white py-1">ADMISSIONS</a>
+                <a href="careerCounselling.html" class="hover:text-white py-1">CAREER COUNSELLING</a>
+                <a href="gallery.html" class="hover:text-white py-1">GALLERY</a>
+                <a href="blogs.html" class="text-brand-green py-1">BLOGS</a>
+                <a href="about.html" class="hover:text-white py-1">ABOUT US</a>
+            </nav>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 mt-8">
+            <a href="home.html#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')" class="block w-full text-center bg-brand-btn text-white py-3 rounded-lg font-bold uppercase text-xs">
+                Enquire Now
+            </a>
+        </div>
+    </div>
+
+    <!-- BLOG POST HEADER / HERO -->
+    <header class="relative pt-32 sm:pt-40 pb-12 sm:pb-16 bg-brand-dark text-white border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block bg-brand-green/20 border border-brand-green/40 text-brand-green px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-sm backdrop-blur-md">
+                Guest Lecture & Training Program
+            </div>
+
+            <h1 class="font-tech text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                Empowering Educators: UniFirst Robotics Teacher Training Program at Soundarya School
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-300 font-medium">
+                <span>Posted on July 27, 2026</span>
+                <span>•</span>
+                <span>By UniFirst Robotics</span>
+                <span>•</span>
+                <span>(0) Comments</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- BLOG POST CONTENT SECTION -->
+    <main class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white minimal-grid">
+        <article class="max-w-3xl mx-auto space-y-10 text-slate-700 text-sm sm:text-base leading-relaxed">
+            
+            <!-- Lead Paragraph & Image 1 -->
+            <div class="space-y-6">
+                <p class="text-lg sm:text-xl font-tech font-bold text-brand-dark leading-snug">
+                    Empowering Educators. Inspiring the Future of STEM.
+                </p>
+                <p>
+                    At UniFirst Robotics, we believe that building future-ready classrooms begins with empowering the educators who inspire them every day.
+                </p>
+                <p>
+                    As part of our commitment to making STEM education practical, engaging, and accessible, UniFirst Robotics conducted a Teacher Training Program at Soundarya School. The program gave educators an opportunity to strengthen their understanding of robotics and STEM-based learning.
+                </p>
+
+                <!-- Blog Image 1 -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 my-8">
+                    <img src="../Images/Blog Images/Empowering Educators. Inspiring the Future of STEM/Image1.png" alt="Teacher Training at Soundarya School Image 1" class="w-full h-auto object-cover max-h-[450px]">
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="space-y-6 pt-4 border-t border-gray-100">
+                <h2 class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">
+                    Practical learning for future-ready classrooms
+                </h2>
+                <p class="font-semibold text-brand-dark">
+                    Conceptual understanding, interactive discussions, practical demonstrations, and hands-on exploration formed the core of the program.
+                </p>
+
+                <h3 class="font-tech text-lg font-bold text-brand-dark pt-2">
+                    From Concepts to Practical Understanding
+                </h3>
+                <p>
+                    STEM education becomes more meaningful when concepts move beyond theory and are connected with practical experiences.
+                </p>
+                <p>
+                    Throughout the training, educators were introduced to concepts related to robotics and technology through explanations, demonstrations, and interactive discussions. The sessions encouraged participants to understand not only what a concept is, but also how it works and where it can be applied.
+                </p>
+                <p>
+                    This approach helps bridge the gap between theoretical knowledge and practical understanding, enabling educators to communicate technical concepts to students in a more engaging and relatable way.
+                </p>
+
+                <!-- Blog Image 2 -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 my-8">
+                    <img src="../Images/Blog Images/Empowering Educators. Inspiring the Future of STEM/Image2.png" alt="Teacher Training at Soundarya School Image 2" class="w-full h-auto object-cover max-h-[450px]">
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="space-y-6 pt-4 border-t border-gray-100">
+                <h2 class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">
+                    Creating an Interactive Learning Environment
+                </h2>
+                <p>
+                    One of the key aspects of effective teacher training is creating an environment where learning is a two-way process.
+                </p>
+                <p>
+                    The sessions encouraged educators to actively participate, ask questions, exchange ideas, and discuss different perspectives. Rather than limiting learning to one-way instruction, the program provided opportunities for meaningful interaction between trainers and participants.
+                </p>
+                <p>
+                    Every question can lead to deeper understanding, while every shared perspective can introduce a new way of approaching a concept. The active involvement of educators reflected their enthusiasm to explore new technologies and bring innovative learning experiences into their classrooms.
+                </p>
+
+                <!-- Blog Image 3 -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 my-8">
+                    <img src="../Images/Blog Images/Empowering Educators. Inspiring the Future of STEM/Image3.png" alt="Teacher Training at Soundarya School Image 3" class="w-full h-auto object-cover max-h-[450px]">
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="space-y-6 pt-4 border-t border-gray-100">
+                <h2 class="font-tech text-xl sm:text-2xl font-bold text-brand-dark">
+                    Moving Towards Future-ready Education
+                </h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="font-tech font-bold text-brand-dark mb-2">Think, Explore, Experiment</h4>
+                        <p class="text-xs text-slate-600">The future of education lies in creating learning experiences that encourage students to think, explore, experiment, and innovate.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="font-tech font-bold text-brand-dark mb-2">Support Continuous Learning</h4>
+                        <p class="text-xs text-slate-600">Teacher training programs provide educators with opportunities to continuously learn and confidently embrace evolving technologies.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Image 4 -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 my-8">
+                    <img src="../Images/Blog Images/Empowering Educators. Inspiring the Future of STEM/Image4.png" alt="Teacher Training at Soundarya School Image 4" class="w-full h-auto object-cover max-h-[450px]">
+                </div>
+
+                <p>
+                    The Teacher Training Program at Soundarya School was another meaningful step toward strengthening STEM education through collaborative and practical learning. UniFirst Robotics looks forward to continuing its journey alongside educators, supporting innovative teaching practices, and making STEM education engaging, accessible, and impactful for every learner.
+                </p>
+
+                <blockquote class="border-l-4 border-brand-green bg-emerald-50/50 p-6 rounded-r-xl italic font-tech text-brand-dark text-base sm:text-lg my-6">
+                    “When educators are empowered to explore, experiment, and innovate, they inspire the same spirit of curiosity in every student they teach.”
+                </blockquote>
+
+                <!-- Blog Image 5 -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 my-8">
+                    <img src="../Images/Blog Images/Empowering Teachers Through Hands-on STEM Education/Image1.png" alt="Teacher Training at Soundarya School Image 5" class="w-full h-auto object-cover max-h-[450px]">
+                </div>
+            </div>
+
+            <!-- Back to Blogs Button -->
+            <div class="pt-8 border-t border-gray-200 flex justify-between items-center">
+                <a href="../blogs.html" class="inline-flex items-center gap-2 bg-brand-dark text-white px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all">
+                    <span class="material-symbols-outlined text-sm">west</span>
+                    <span>Back to All Blogs</span>
+                </a>
+                <a href="../contact.html" class="inline-flex items-center gap-2 bg-brand-btn text-white px-6 py-3 rounded-md text-xs font-bold uppercase tracking-wider hover:bg-red-600 transition-all">
+                    <span>Enquire Now</span>
+                    <span class="material-symbols-outlined text-sm">east</span>
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-slate-400 py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded bg-brand-green text-brand-dark flex items-center justify-center font-bold shrink-0">
+                    <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                </div>
+                <span class="font-tech text-sm font-bold text-white">UniFirst Robotics</span>
+            </div>
+
+            <p class="text-xs text-slate-500 text-center sm:text-right">
+                © 2026 UniFirst Robotics. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
